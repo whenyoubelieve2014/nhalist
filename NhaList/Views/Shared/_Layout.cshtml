@@ -1,0 +1,24 @@
+﻿@using NhaList.ExtensionMethods
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Nhà List | Tìm và cho thuê nhà</title>
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width" />
+        @Html.CssFor("~/Content/css")
+    </head>
+    <body>
+        @RenderBody()
+        <footer>
+            <div class="content-wrapper">
+                <div class="float-left">
+                    <p>&copy; @DateTime.Now.Year - WhenYouBelieve2014@gmail.com</p>
+                </div>
+            </div>
+        </footer>
+        @Html.JsFor("~/bundles/modernizr")
+        @Html.JsFor("~/bundles/jquery")
+        @RenderSection("scripts", false)
+    </body>
+</html>
