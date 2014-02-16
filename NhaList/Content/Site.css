@@ -24,6 +24,11 @@ h6,
   color: inherit;
 }
 
+.impressive-text {
+    font-family: 'Source Sans Pro', sans-serif;
+    text-decoration: InfoText
+}
+
 /* Sticky footer styles
 -------------------------------------------------- */
 
