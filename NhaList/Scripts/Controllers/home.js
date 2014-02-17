@@ -1,13 +1,12 @@
-﻿angular.module('app', ['ngRoute', 'appRoutes', 'ngStorage', 'geocoder'])
-    .controller('homeCtrlr', function($scope) {
-        }
-    ).controller('searchCtrlr', [
-            '$scope', 'geocoderService', function ($scope, geocoderService) {
+﻿angular
+    .module('home', [])
+    .controller('homePageCtrlr', function() {})
+    .controller('searchCtrlr', [
+        '$scope', '$location', function ($scope, $location) {
             $scope.handleSubmit = function() {
                 if (!$scope.nearby) return false;
                 $location.path('/search');
                 return true;
             };
         }
-        ]
-    );
+    ]);

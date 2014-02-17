@@ -8,13 +8,14 @@
                 // home page
                 .when('/', {
                     templateUrl: '/Angular/Home',
-                    controller: 'homeCtrlr'
+                    controller: 'homePageCtrlr'
                 })
                 // search page
                 .when('/search', {
                     templateUrl: '/Angular/Search',
-                    controller: 'searchCtrlr'
-                });
+                    controller: 'searchPageCtrlr'
+                })
+            ;
 
             $locationProvider.html5Mode(true);
 
