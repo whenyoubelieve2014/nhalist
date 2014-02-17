@@ -9,9 +9,9 @@ namespace NhaList
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            routes.MapRoute("Angular", "view/{name}",
-               new { controller = "Home", action = "Index"}
-               );
+            routes.MapRoute("Angular", "view/{name}/{routeParameter}",
+                new {controller = "Home", action = "Index", routeParameter = UrlParameter.Optional}
+                );
 
             routes.MapRoute("Default", "{controller}/{action}/{id}",
                 new {controller = "Home", action = "Index", id = UrlParameter.Optional}

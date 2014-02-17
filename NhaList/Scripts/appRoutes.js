@@ -11,7 +11,7 @@
                     controller: 'homePageCtrlr'
                 })
                 // search page
-                .when('/view/search', {
+                .when('/view/search/:nearBy', {
                     templateUrl: '/Angular/Search',
                     controller: 'searchPageCtrlr'
                 })
