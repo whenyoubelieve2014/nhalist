@@ -1,10 +1,11 @@
-﻿angular.module('app', ['ngRoute', 'appRoutes'])
-    .controller('homeCtrlr', [
-        '$scope', function($scope) {
+﻿var app = angular.module('app', ['ngRoute', 'appRoutes', 'ngStorage', 'geocoder'])
+    .controller('homeCtrlr', function($scope) {
         }
-    ])
-    .controller('searchCtrlr', [
-        '$scope', function($scope) {
-            $scope.status = 'Dang Dinh Nghia';
-        }
-    ]);
+    );
+app.controller('searchCtrlr', [
+            '$scope', 'geocoderService', function ($scope, geocoderService) {
+                console.log('geocoderService', geocoderService);
+                //$scope.status = geocoderService.status();
+            }
+        ]
+    );

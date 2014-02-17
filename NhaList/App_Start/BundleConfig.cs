@@ -20,10 +20,11 @@ namespace NhaList
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                 "~/Scripts/bootstrap*"));
 
-            bundles.Add(new ScriptBundle("~/bundles/app")
-                .Include("~/Scripts/Controllers/home.js")
+            bundles.Add(new ScriptBundle("~/bundles/home")
                 .Include("~/Scripts/appRoutes.js")
-                .Include("~/Scripts/app.js")
+                .Include("~/Scripts/Services/ngStorage.js")
+                .Include("~/Scripts/Services/geocoder-service.js")
+                .Include("~/Scripts/Controllers/home.js")
                 );
 
             bundles.Add(new StyleBundle("~/Content/site")

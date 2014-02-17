@@ -1,3 +1,9 @@
-﻿<!-- angular templating -->
+﻿@using NhaList.ExtensionMethods
+<!-- angular templating -->
 <!-- this is where content will be injected -->
 <div ng-view></div>
+@section scripts
+{
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+    @Html.JsFor("~/bundles/home")
+}
