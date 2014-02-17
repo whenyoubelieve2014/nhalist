@@ -5,19 +5,18 @@
 <div class="row">
     <div class="col-md-6">
         <div class="well" data-ng-controller="searchCtrlr">
-            <form role="form" nga-submit="handleSubmit()" >
+            <form role="form" ng-submit="handleSubmit()" >
                 <fieldset>
                     <legend>Tìm Nhà Cho Thuê</legend>
                     <div class="form-group" >
                         <div class="col-xs-9">
-                            <input type="text" class="form-control" placeholder="Tên Thành Phố hoặc Mã Vùng (Zip Code)" nga-model="nearby">
+                            <input type="text" class="form-control" placeholder="Tên Thành Phố hoặc Mã Vùng (Zip Code)" ng-model="nearby">
                             <span class="help-block">Ví dụ: Fallschurch VA, hoặc 22046</span>
                         </div>
                         <button class="btn btn-success" type="submit">
                             <i class="fa fa-play"></i>
                             Tìm Ngay
                         </button>
-                        {{ msg }}
                     </div>
                 </fieldset>
             </form>

@@ -5,7 +5,7 @@
         '$scope', '$location', function ($scope, $location) {
             $scope.handleSubmit = function() {
                 if (!$scope.nearby) return false;
-                $location.path('/search');
+                $location.path('view/search');
                 return true;
             };
         }

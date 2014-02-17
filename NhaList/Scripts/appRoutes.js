@@ -11,7 +11,7 @@
                     controller: 'homePageCtrlr'
                 })
                 // search page
-                .when('/search', {
+                .when('/view/search', {
                     templateUrl: '/Angular/Search',
                     controller: 'searchPageCtrlr'
                 })
