@@ -1,6 +1,6 @@
 ﻿@using NhaList.ExtensionMethods
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xml:lang="en" @*data-ng-app="app"*@>
     <head>
         <meta charset="utf-8" />
         <title>Nhà List | Tìm và cho thuê nhà</title>
@@ -9,7 +9,6 @@
         <meta name="description" content="Tìm và cho thuê nhà 100% bằng tiếng Việt, ở bất cứ nơi nào trên thế giới, USA (Mỹ), Việt Nam, Australia (Úc), Europe (Âu châu)">
         <meta name="author" content="WhenYouBelieve2014@gmail.com">
         <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300|Roboto&subset=latin,vietnamese' rel='stylesheet' type='text/css'>
-
         @Html.CssFor("~/Content/bootstrap.css")
         @Html.CssFor("~/Content/site.css")
     </head>
@@ -25,6 +24,10 @@
         @Html.JsFor("~/bundles/modernizr")
         @Html.JsFor("~/bundles/jquery")
         @Html.JsFor("~/bundles/bootstrap")
+        @*@Html.JsFor("~/bundles/angular")*@
+        <script src="~/Scripts/angular.js"></script>
+        <script src="~/Scripts/angular-route.js"></script>
+        @*@Html.JsFor("~/bundles/app")*@
         @RenderSection("scripts", false)
     </body>
 </html>
