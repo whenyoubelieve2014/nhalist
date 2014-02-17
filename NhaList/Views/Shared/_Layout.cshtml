@@ -1,19 +1,28 @@
 ﻿@using NhaList.ExtensionMethods
 <!DOCTYPE html>
-<html lang="en" xml:lang="en" @*data-ng-app="app"*@>
+<html lang="en" xml:lang="en" data-ng-app="app">
     <head>
         <meta charset="utf-8" />
         <title>Nhà List | Tìm và cho thuê nhà</title>
         <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="Tìm và cho thuê nhà 100% bằng tiếng Việt, ở bất cứ nơi nào trên thế giới, USA (Mỹ), Việt Nam, Australia (Úc), Europe (Âu châu)">
+        <meta name="description" content="Tìm và cho thuê nhà thiệt là dễ">
         <meta name="author" content="WhenYouBelieve2014@gmail.com">
-        <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300|Roboto&subset=latin,vietnamese' rel='stylesheet' type='text/css'>
-        @Html.CssFor("~/Content/bootstrap.css")
+        <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" />
         @Html.CssFor("~/Content/site.css")
     </head>
     <body>
-        @RenderBody()
+        <header>
+            <div class="container">
+                <h1 >Nhà List <span class="glyphicon glyphicon-home"></span><small class="thin-font"><span class="glyphicon glyphicon-home"></span> Thuê nhà thiệt là dễ</small></h1>
+            </div>
+        </header>
+        <div class="wrapper">
+            <div class="container">
+                @RenderBody()
+            </div>
+            <div class="push"><!--//--></div>
+        </div>
         <footer>
             <div class="container">
                 <p>&copy; 2014 — 
@@ -21,13 +30,12 @@
                 </p>
             </div>
         </footer>
-        @Html.JsFor("~/bundles/modernizr")
-        @Html.JsFor("~/bundles/jquery")
-        @Html.JsFor("~/bundles/bootstrap")
-        @*@Html.JsFor("~/bundles/angular")*@
-        <script src="~/Scripts/angular.js"></script>
-        <script src="~/Scripts/angular-route.js"></script>
-        @*@Html.JsFor("~/bundles/app")*@
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular-route.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular-loader.js"></script>
+        @Html.JsFor("~/bundles/app")
         @RenderSection("scripts", false)
     </body>
 </html>

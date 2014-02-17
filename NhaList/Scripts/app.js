@@ -1,1 +1,1 @@
-﻿angular.module('app', ['appRoutes']);
+﻿angular.module('app', ['ngRoute', 'appRoutes', 'homeCtrlr']);

@@ -1,9 +1,39 @@
 ﻿body {
-  font-family: "Roboto Condensed", Helvetica, Arial, sans-serif;
-  font-size: 14px;
-  line-height: 1.428571429;
-  color:  #ffffff;
-  background-color:#333333;
+    background-color: #ffffff;
+    color: #333333;
+    font-family: "Roboto Condensed", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.428571429;
+}
+
+header, footer {
+    background-color: #333333;
+    color: #ffffff;
+}
+
+header > h1 {
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+footer > .container > p {
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.wrapper > .container { padding-top: 100px; }
+
+input, button, .btn {
+    margin-bottom: 5px;
+}
+
+.input-text-long {
+    width: 180px;
+}
+
+.btn-yellow {
+    color: darkgreen;
+    background-color: gold;
 }
 
 h1,
@@ -18,16 +48,13 @@ h6,
 .h4,
 .h5,
 .h6 {
-  font-family: "Roboto Condensed", Helvetica, Arial, sans-serif;
-  font-weight: 500;
-  line-height: 1.1;
-  color: inherit;
+    color: inherit;
+    font-family: "Roboto Condensed", Helvetica, Arial, sans-serif;
+    font-weight: 500;
+    line-height: 1.1;
 }
 
-.impressive-text {
-    font-family: 'Source Sans Pro', sans-serif;
-    text-decoration: InfoText
-}
+.thin-font { font-family: 'Source Sans Pro', sans-serif; }
 
 /* Sticky footer styles
 -------------------------------------------------- */
@@ -44,7 +71,7 @@ body {
     height: auto !important;
     height: 100%;
     /* Negative indent footer by it's height */
-    margin: 0 auto -60px;
+    margin: -69px auto -60px;
     min-height: 100%;
 }
 
@@ -62,4 +89,23 @@ footer { height: 60px; }
         padding-left: 20px;
         padding-right: 20px;
     }
+}
+
+/* Google fonts
+-------------------------------------------------- */
+
+@font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    src: url(http://themes.googleusercontent.com/static/fonts/roboto/v10/EsO9S3LLRZHk3Wc3E-sW3A.eot);
+    src: local('Roboto Regular'), local('Roboto-Regular'), url(http://themes.googleusercontent.com/static/fonts/roboto/v10/EsO9S3LLRZHk3Wc3E-sW3A.eot) format('embedded-opentype'), url(http://themes.googleusercontent.com/static/fonts/roboto/v10/HV_H5nosKj8mZupFxrHqHA.woff) format('woff');
+}
+
+@font-face {
+    font-family: 'Source Sans Pro';
+    font-style: normal;
+    font-weight: 300;
+    src: url(http://themes.googleusercontent.com/static/fonts/sourcesanspro/v7/toadOcfmlt9b38dHJxOBGMnd7HWCmWIMuBbynTchMEA.eot);
+    src: local('Source Sans Pro Light'), local('SourceSansPro-Light'), url(http://themes.googleusercontent.com/static/fonts/sourcesanspro/v7/toadOcfmlt9b38dHJxOBGMnd7HWCmWIMuBbynTchMEA.eot) format('embedded-opentype'), url(http://themes.googleusercontent.com/static/fonts/sourcesanspro/v7/toadOcfmlt9b38dHJxOBGPp6i7R5xQdyoqQVVjABmmY.woff) format('woff');
 }

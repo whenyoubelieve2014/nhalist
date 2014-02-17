@@ -1,1 +1,2 @@
-﻿var app = angular.module('app');
+﻿angular.module('homeCtrlr', []).controller('homeCtrlr', function ($scope) {
+});

@@ -2,8 +2,40 @@
     // Views/Angular/Index.cshtml
     Layout = null;
 }
-
-.when('/', {
-            templateUrl: '/Views/Angular/Home',
-            controller: 'HomeController'
-        });
+<div class="row">
+    <div class="col-md-6">
+        <div class="well">
+            <form role="form" >
+                <fieldset>
+                    <legend>Tìm Nhà Cho Thuê</legend>
+                    <div class="form-group">
+                        <div class="col-xs-9">
+                            <input type="email" class="form-control" placeholder="Tên Thành Phố hoặc Mã Vùng (Zip Code)">
+                        </div>
+                        <button class="btn btn-success">
+                            <span class="glyphicon glyphicon-play"></span>
+                            Tìm Ngay
+                        </button>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="well">
+            <form role="form" >
+                <fieldset>
+                    <legend>Cho Thuê Nhà</legend>
+                    <div class="form-group">
+                        <div class="col-xs-9">
+                            <input type="email" class="form-control" placeholder = "Số Điện Thoại hoặc Địa Chỉ Email Thường Dùng">
+                        </div>
+                        <button class="btn btn-yellow">Tiếp Tục
+                            <span class="glyphicon glyphicon-forward"></span>
+                        </button>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
