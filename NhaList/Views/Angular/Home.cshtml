@@ -5,23 +5,19 @@
 <div class="row">
     <div class="col-md-6">
         <div class="well" data-ng-controller="searchCtrlr">
-            <form role="form" >
+            <form role="form" ng-submit="handleSubmit()" >
                 <fieldset>
                     <legend>Tìm Nhà Cho Thuê</legend>
-                    <div class="form-group">
+                    <div class="form-group" >
                         <div class="col-xs-9">
-                            <input type="text" class="form-control" placeholder="Tên Thành Phố hoặc Mã Vùng (Zip Code)">
+                            <input type="text" class="form-control" placeholder="Tên Thành Phố hoặc Mã Vùng (Zip Code)" ng-model="nearby">
+                            <span class="help-block">Ví dụ: Fallschurch VA, hoặc 22046</span>
                         </div>
-                        <button class="btn btn-success">
-                            <span class="glyphicon glyphicon-play"></span>
+                        <button class="btn btn-success" type="submit">
+                            <i class="fa fa-play"></i>
                             Tìm Ngay
                         </button>
-                        <div class="col-xs-12">
-                            <div class="alert alert-danger alert-dismissable">
-                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                {{ status }}
-                            </div>
-                        </div>
+                        {{ msg }}
                     </div>
                 </fieldset>
             </form>
