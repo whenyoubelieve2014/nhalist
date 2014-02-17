@@ -4,22 +4,49 @@
 }
 <div class="row">
     <div class="col-md-6">
-        <div class="well">
+        <div class="well" data-ng-controller="searchCtrlr">
             <form role="form" >
                 <fieldset>
                     <legend>Tìm Nhà Cho Thuê</legend>
                     <div class="form-group">
                         <div class="col-xs-9">
-                            <input type="email" class="form-control" placeholder="Tên Thành Phố hoặc Mã Vùng (Zip Code)">
+                            <input type="text" class="form-control" placeholder="Tên Thành Phố hoặc Mã Vùng (Zip Code)">
                         </div>
                         <button class="btn btn-success">
                             <span class="glyphicon glyphicon-play"></span>
                             Tìm Ngay
                         </button>
+                        <div class="col-xs-12">
+                            <div class="alert alert-danger alert-dismissable">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                {{ status }}
+                            </div>
+                        </div>
                     </div>
                 </fieldset>
             </form>
-        </div>
+        </div><div class="well">
+                  <form role="form" >
+                      <fieldset>
+                          <legend>Tìm Giống Như Lần Trước</legend>
+                          <div class="form-group">
+                              <div class="col-xs-9">
+                                  <input type="text" class="form-control" placeholder="Địa Chỉ Email Lần Trước">
+                              </div>
+                              <button class="btn btn-success">
+                                  <span class="glyphicon glyphicon-backward"></span>
+                                  Gửi Email
+                              </button>
+                              <div class="col-xs-12">
+                                  <div class="alert alert-danger alert-dismissable">
+                                      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                      <strong>Chưa Xong!</strong> Xin Đừng Sử Dụng.
+                                  </div>
+                              </div>
+                          </div>
+                      </fieldset>
+                  </form>
+              </div>
     </div>
     <div class="col-md-6">
         <div class="well">
@@ -27,15 +54,37 @@
                 <fieldset>
                     <legend>Cho Thuê Nhà</legend>
                     <div class="form-group">
-                        <div class="col-xs-9">
-                            <input type="email" class="form-control" placeholder = "Số Điện Thoại hoặc Địa Chỉ Email Thường Dùng">
+                        <div class="col-xs-4">
+                            <input type="text" class="form-control" placeholder="Số Điện Thoại">
+                        </div>
+                        <div class="col-xs-5">
+                            <input type="text" class="form-control" placeholder="hoặc Địa Chỉ Email">
                         </div>
                         <button class="btn btn-yellow">Tiếp Tục
                             <span class="glyphicon glyphicon-forward"></span>
                         </button>
+                        <div class="col-xs-12">
+                            <div class="alert alert-danger alert-dismissable">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <strong>Chưa Xong!</strong> Xin Đừng Sử Dụng.
+                            </div>
+                        </div>
                     </div>
                 </fieldset>
             </form>
         </div>
     </div>
+    <div class="col-md-6">
+        <div class="well">
+            <h5>Thông Tin & Quảng Cáo</h5>
+            <div class="alert alert-info alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <p><strong>Chưa Xong!</strong> Xin Đừng Sử Dụng.</p>
+                <p><strong>Chưa Xong!</strong> Xin Đừng Sử Dụng.</p>
+                <p><strong>Chưa Xong!</strong> Xin Đừng Sử Dụng.</p>
+                <p><strong>Chưa Xong!</strong> Xin Đừng Sử Dụng.</p>
+            </div>
+        </div>
+    </div>
+
 </div>

@@ -36,6 +36,10 @@ input, button, .btn {
     background-color: gold;
 }
 
+.alert {
+    margin-bottom: 0;
+}
+
 h1,
 h2,
 h3,
