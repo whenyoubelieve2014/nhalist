@@ -16,12 +16,17 @@ header > h1 {
     margin-top: 10px;
 }
 
+.white-link {
+    color: white !important;
+    text-decoration: none !important;
+}
+
 footer > .container > p {
     margin-bottom: 10px;
     margin-top: 10px;
 }
 
-.wrapper > .container { padding-top: 100px; }
+.wrapper > .container { padding-top: 90px; }
 
 input, button, .btn {
     margin-bottom: 5px;

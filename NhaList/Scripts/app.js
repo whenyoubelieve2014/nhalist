@@ -1,3 +1,7 @@
-﻿angular.module('app', ['ngRoute', 'appRoutes', 'home'
-    , 'search'
+﻿angular.module('app', [
+    //services
+    'ngRoute', 'appRoutes',
+    'activity',
+    //controllers
+    'home', 'search'
 ]);

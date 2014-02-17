@@ -24,6 +24,7 @@ namespace NhaList
                 .Include("~/Scripts/appRoutes.js")
                 //.Include("~/Scripts/Services/ngStorage.js")
                 //.Include("~/Scripts/Services/geocoder-service.js")
+                .Include("~/Scripts/Services/activity.js")
                 .Include("~/Scripts/Controllers/home.js")
                 .Include("~/Scripts/Controllers/search.js")
                 .Include("~/Scripts/app.js")

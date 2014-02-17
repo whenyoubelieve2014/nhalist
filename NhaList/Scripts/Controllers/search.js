@@ -1,3 +1,7 @@
 ﻿angular
-    .module('search', [])
-    .controller('searchPageCtrlr', function() { });
+    .module('search', ['activity'])
+    .controller('searchPageCtrlr', [
+        '$scope', 'activityService', function($scope, activityService) {
+            $scope.nearBy = activityService.retrieveSearch();
+        }
+    ]);
