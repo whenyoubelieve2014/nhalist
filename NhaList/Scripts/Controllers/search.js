@@ -1,29 +1,19 @@
 ﻿angular
-    .module('search', ['activity'])
+    .module('search', ['geocoder'])
     .controller('searchPageCtrlr', [
-        '$scope', '$routeParams', 'activityService', function($scope, $routeParams, activityService) {
-            $scope.noResults = false;
-
+        '$scope', '$routeParams', 'geocoderService', '$location', 
+        function($scope, $routeParams, geocoderService, $location) {
+            $scope.nearBy = $routeParams.nearBy;
             $scope.handleSubmit = function() {
-                $scope.searching = true;
-                setTimeout(function() {
-                    $scope.$apply(function () {
-                        $scope.searching = false;
-                        $scope.noResults = true;
-                    });
-                },1000);
+                $location.path('/view/search/' + $scope.nearBy);
             };
-
-            activityService.retrieveSearch(
-                $routeParams.nearBy,
-                function(search) {
-                    $scope.$apply(function() {
-                        $scope.nearBy = search.nearBy;
-                        $scope.handleSubmit();
-                    });
-
+            if ($scope.nearBy) {
+                $scope.searching = true;
+                geocoderService.getLatLong($scope.nearBy, function (results, status) {
+                    $scope.searching = false;
+                    $scope.noResults = !results || !results.length || status !== window.google.maps.GeocoderStatus.OK;
+                    $scope.$apply();
                 });
-
-
+            }
         }
     ]);

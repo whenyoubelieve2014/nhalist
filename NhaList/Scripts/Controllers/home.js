@@ -1,15 +1,12 @@
 ﻿angular
-    .module('home', ['activity'])
+    .module('home', [])
     .controller('homePageCtrlr', function() {})
     .controller('searchCtrlr', [
-        '$scope', '$location', 'activityService', function($scope, $location, activityService) {
+        '$scope', '$location',  function($scope, $location) {
             $scope.handleSubmit = function() {
                 if (!$scope.nearBy) return false;
-                activityService.createSearch($scope.nearBy,
-                    function(search) {
-                        $location.path('view/search/' + search.nearBy);
-                    }
-                );
+                
+                $location.path('/view/search/' + $scope.nearBy);
                 return true;
             };
         }

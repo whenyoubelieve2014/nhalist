@@ -6,7 +6,7 @@
         <div class="form-group" ng-class="{'has-error': noResults}">
             <input type="text" class="form-control" placeholder="Thành Phố / Zip Code" ng-model="nearBy" />
             <button class="btn btn-sm" ng-disabled="searching" 
-                ng-class="{'btn-success':!noResults,'btn-danger':noResults}"
+                    ng-class="{'btn-success':!noResults,'btn-danger':noResults}"
                 
                     type="submit">
                 <span ng-hide="searching">
@@ -18,7 +18,11 @@
                     Đang Tìm
                 </span>
             </button>
-            <span class="text-danger" ng-show="!searching && noResults">Không tìm được</span>
+            <span ng-show="nearBy && !searching">
+                <span class="text-danger" ng-show="noResults" >Không tìm được</span>
+                <span class="text-info" ng-hide="noResults" >Tìm được</span>
+            </span>
         </div>
     </form>
 </div>
+{{ googleResult }}
