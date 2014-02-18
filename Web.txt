@@ -1,0 +1,6 @@
+http://getbootstrap.com/css/#forms-control-validation
+http://getbootstrap.com/components/#wells
+http://fortawesome.github.io/Font-Awesome/icons/
+http://henriquat.re/basics-of-angular/services-dependency-injection/services-and-dependency-injection-in-angularjs.html
+https://api.jquery.com/jQuery.grep/
+https://developers.google.com/maps/documentation/javascript/geocoding
