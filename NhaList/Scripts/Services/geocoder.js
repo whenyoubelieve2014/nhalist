@@ -2,14 +2,14 @@
 angular
     .module('geocoder', [])
     .factory('localGeoService', [
-        '$timeout', function($timeout) {
+        '$timeout', function ($timeout) {
             var cached = [
                 {
                     address: 'dc',
                     googleResponse: {
                         "results": [
                             {
-                                "address_components": [
+                                /*"address_components": [
                                     {
                                         "long_name": "Washington",
                                         "short_name": "Washington",
@@ -30,7 +30,7 @@ angular
                                         "short_name": "US",
                                         "types": ["country", "political"]
                                     }
-                                ],
+                                ],*/
                                 "formatted_address": "Washington, DC, USA",
                                 "geometry": {
                                     "bounds": {
@@ -62,7 +62,7 @@ angular
                                 "types": ["locality", "political"]
                             },
                             {
-                                "address_components": [
+                                /*"address_components": [
                                     {
                                         "long_name": "District of Columbia",
                                         "short_name": "DC",
@@ -73,7 +73,7 @@ angular
                                         "short_name": "US",
                                         "types": ["country", "political"]
                                     }
-                                ],
+                                ],*/
                                 "formatted_address": "District of Columbia, USA",
                                 "geometry": {
                                     "bounds": {
@@ -117,10 +117,14 @@ angular
                 });
                 if (found && found.length) {
                     var response = found[0].googleResponse;
-                    $timeout(callback(response.results, response.status));
+                    $timeout(function() {
+                        callback(response.results, response.status);
+                    });
                     return;
                 }
-                $timeout(callback(null, window.google.maps.GeocoderStatus.ZERO_RESULTS));
+                $timeout(function() {
+                    callback(null, window.google.maps.GeocoderStatus.ZERO_RESULTS);
+                });
             };
             return {
                 geocode: geocode
@@ -133,6 +137,9 @@ angular
                 { name: 'localGeoService', obj: localGeoService }
                 //,{ name: 'google.maps.Geocoder', obj: new window.google.maps.Geocoder() }
             ];
+            var validate = function (results, status) {
+                return results && results.length && status === window.google.maps.GeocoderStatus.OK;
+            };
 
             var getLatLong = function(nearBy, callback) {
                 var addressWrapper = { address: nearBy };
@@ -141,24 +148,26 @@ angular
                         //all services have been tried
                         //no results found
                         if (callback) {
-                            callback(null, window.google.maps.GeocoderStatus.ZERO_RESULTS);
+                            $timeout(function() {
+                                callback(null, window.google.maps.GeocoderStatus.ZERO_RESULTS);
+                            });
                         }
                         return;
                     }
                     var service = services[i].obj;
                     service.geocode(addressWrapper, function(results, status) {
                         /*
-The status code may return one of the following values:
-
-google.maps.GeocoderStatus.OK indicates that the geocode was successful.
-google.maps.GeocoderStatus.ZERO_RESULTS indicates that the geocode was successful but returned no results. This may occur if the geocode was passed a non-existent address or a latng in a remote location.
-google.maps.GeocoderStatus.OVER_QUERY_LIMIT indicates that you are over your quota. Refer to the Usage limits exceeded article in the Maps for Business documentation, which also applies to non-Business users, for more information.
-google.maps.GeocoderStatus.REQUEST_DENIED indicates that your request was denied for some reason.
-google.maps.GeocoderStatus.INVALID_REQUEST generally indicates that the query (address or latLng) is missing.
-                    
-                    */
-                        if (!results || !results.length || status === window.google.maps.GeocoderStatus.ZERO_RESULTS) {
-                            tryService(++i);
+                        The status code may return one of the following values:
+                        google.maps.GeocoderStatus.OK indicates that the geocode was successful.
+                        google.maps.GeocoderStatus.ZERO_RESULTS indicates that the geocode was successful but returned no results. This may occur if the geocode was passed a non-existent address or a latng in a remote location.
+                        google.maps.GeocoderStatus.OVER_QUERY_LIMIT indicates that you are over your quota. Refer to the Usage limits exceeded article in the Maps for Business documentation, which also applies to non-Business users, for more information.
+                        google.maps.GeocoderStatus.REQUEST_DENIED indicates that your request was denied for some reason.
+                        google.maps.GeocoderStatus.INVALID_REQUEST generally indicates that the query (address or latLng) is missing.
+                        */
+                        if (!validate(results, status)) {
+                            $timeout(function() {
+                                tryService(++i);
+                            });
                             return;
                         }
                         if (callback) {
@@ -170,8 +179,11 @@ google.maps.GeocoderStatus.INVALID_REQUEST generally indicates that the query (a
                 };
                 tryService(0);
             };
+
+       
             return {
-                getLatLong: getLatLong
+                getLatLong: getLatLong,
+                validate: validate
             };
         }
     ]);
