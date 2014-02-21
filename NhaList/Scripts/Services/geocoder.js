@@ -1,4 +1,10 @@
 'use strict';
+/*
+TODO:
+1. save results to cache
+2. retrieve results from db
+3. save results to db
+*/
 angular
     .module('geocoder', [])
     .factory('localGeoService', [

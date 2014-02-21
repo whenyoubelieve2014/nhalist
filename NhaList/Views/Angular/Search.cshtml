@@ -4,10 +4,9 @@
 <div class="well well-sm" >
     <form class="form-inline" role="form" ng-submit="handleSubmit()">
         <div class="form-group" ng-class="{'has-error': noResults}">
-            <input type="text" class="form-control" placeholder="Thành Phố / Zip Code" ng-model="nearBy" />
-            <button class="btn btn-sm" ng-disabled="searching" 
+            <input type="text" autocomplete="off"  class="form-control" placeholder="Thành Phố / Zip Code" ng-model="nearBy" />
+            <button class="btn" ng-disabled="searching" 
                     ng-class="{'btn-success':!noResults,'btn-danger':noResults}"
-                
                     type="submit">
                 <span ng-hide="searching">
                     <i class="fa fa-search"></i>
@@ -25,4 +24,3 @@
         </div>
     </form>
 </div>
-{{ googleResult }}
