@@ -4,3 +4,11 @@ http://fortawesome.github.io/Font-Awesome/icons/
 http://henriquat.re/basics-of-angular/services-dependency-injection/services-and-dependency-injection-in-angularjs.html
 https://api.jquery.com/jQuery.grep/
 https://developers.google.com/maps/documentation/javascript/geocoding
+
+
+To create database diagram
+ALTER AUTHORIZATION ON DATABASE::NhaList TO sa
+
+To solve EF6 warning when first added
+Install EFTools6.0.2ForVS2012.msi	
+http://www.microsoft.com/en-us/download/details.aspx?id=40762
