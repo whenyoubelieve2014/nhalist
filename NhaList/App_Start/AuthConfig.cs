@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.Web.WebPages.OAuth;
-using NhaList.Models;
-
-namespace NhaList
+﻿namespace NhaList
 {
     public static class AuthConfig
     {

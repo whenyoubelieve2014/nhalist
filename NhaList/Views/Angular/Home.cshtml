@@ -3,83 +3,69 @@
     Layout = null;
 }
 <div class="row">
-    <div class="col-md-6">
-        <div class="well" data-ng-controller="searchCtrlr">
+    <section class="col-md-6">
+        <section class="well" ng-controller="searchCtrlr">
             <form role="form" ng-submit="handleSubmit()" >
                 <fieldset>
                     <legend>Tìm Nhà Cho Thuê</legend>
                     <div class="form-group" >
-                        <div class="col-xs-9">
-                            <input type="text" autocomplete="off"  class="form-control" placeholder="Tên Thành Phố hoặc Mã Vùng (Zip Code)" ng-model="nearBy" />
-                            <span class="help-block">Ví dụ: Fallschurch VA, hoặc 22046</span>
-                        </div>
-                        <button class="btn btn-success" type="submit">
-                            <i class="fa fa-play"></i>
-                            Tìm Ngay
-                        </button>
+                        <label>Tên Thành Phố hoặc Mã Vùng (Zip Code):</label>
+                        <input type="text" autocomplete="off"  class="form-control" placeholder="Ví dụ: Fallschurch, hoặc 22046" ng-model="nearBy" />
                     </div>
+                        
+                    <button class="btn btn-success" type="submit">
+                        <i class="fa fa-search-plus"></i>
+                        Tìm Ngay
+                    </button>
                 </fieldset>
             </form>
-        </div><div class="well">
-                  <form role="form" >
-                      <fieldset>
-                          <legend>Tìm Giống Như Lần Trước</legend>
-                          <div class="form-group">
-                              <div class="col-xs-9">
-                                  <input type="text" autocomplete="off"  class="form-control" placeholder="Địa Chỉ Email Lần Trước" />
-                              </div>
-                              <button class="btn btn-success">
-                                  <span class="glyphicon glyphicon-backward"></span>
-                                  Gửi Email
-                              </button>
-                              <div class="col-xs-12">
-                                  <div class="alert alert-danger alert-dismissable">
-                                      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                      <strong>Chưa Xong!</strong> Xin Đừng Sử Dụng.
-                                  </div>
-                              </div>
-                          </div>
-                      </fieldset>
-                  </form>
-              </div>
-    </div>
-    <div class="col-md-6">
-        <div class="well">
-            <form role="form" >
-                <fieldset>
-                    <legend>Cho Thuê Nhà</legend>
-                    <div class="form-group">
-                        <div class="col-xs-4">
-                            <input type="text" autocomplete="off"  class="form-control" placeholder="Số Điện Thoại" />
-                        </div>
-                        <div class="col-xs-5">
-                            <input type="text" autocomplete="off"  class="form-control" placeholder="hoặc Địa Chỉ Email" />
-                        </div>
-                        <button class="btn btn-yellow">Tiếp Tục
-                            <span class="glyphicon glyphicon-forward"></span>
-                        </button>
-                        <div class="col-xs-12">
-                            <div class="alert alert-danger alert-dismissable">
-                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                <strong>Chưa Xong!</strong> Xin Đừng Sử Dụng.
-                            </div>
-                        </div>
-                    </div>
-                </fieldset>
-            </form>
-        </div>
-    </div>
-    <div class="col-md-6">
-        <div class="well">
+        </section>
+        <section class="well">
             <h5>Thông Tin & Quảng Cáo</h5>
             <div class="alert alert-info alert-dismissable">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                 <p><strong>Chưa Xong!</strong> Xin Đừng Sử Dụng.</p>
-                <p><strong>Chưa Xong!</strong> Xin Đừng Sử Dụng.</p>
-                <p><strong>Chưa Xong!</strong> Xin Đừng Sử Dụng.</p>
-                <p><strong>Chưa Xong!</strong> Xin Đừng Sử Dụng.</p>
             </div>
+        </section>
+    </section>
+    @* Right Section Starts *@
+    <section class="col-md-6">
+        <div class="well">
+            <form role="form" ng-controller="postCtrlr" ng-submit="handleSubmit()">
+                <fieldset>
+                    <legend>Cho Thuê Nhà</legend>
+                    <div class="form-group" >
+                        <div class="row">
+                            <div class="col-md-6" ng-class="{'has-error': validating && !phone}">
+                                <label>Số Điện Thoại:</label>
+                                <input type="text" autocomplete="off" ng-model="phone"  class="form-control" placeholder="Ví dụ: 7037777777" />
+                            </div>
+                            <div  class="col-md-6" ng-class="{'has-error': validating && !email}">
+                                <label>hoặc Email:</label>
+                                <input type="text" autocomplete="off" ng-model="email" class="form-control" placeholder="Ví dụ: nguyenngocng@yahoo.com" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error': validating && !nearBy}">
+                        <label>Tên Thành Phố hoặc Mã Vùng (Zip Code):</label>
+                        <input type="text" autocomplete="off" ng-model="nearBy" class="form-control" placeholder="Ví dụ: Fallschurch, hoặc 22046" ng-model="nearBy" />
+                    </div>
+                    <div class="form-group" ng-class="{'has-error': validating && !text}">
+                        <label>Lời Giới Thiệu:</label>
+                        <textarea rows="6" class="form-control" ng-model="text" placeholder="Ví dụ: Nhà ở gần Eden, có chỗ parking rộng rãi. Điện thoại xin gặp anh Ngân." ng-model="nearBy"></textarea>
+                    </div>
+                    <div class="form-group" >
+                        <button class="btn btn-yellow" type="submit" ng-hide="posted">
+                            Đăng Lên Mạng
+                            <i class="fa fa-arrow-up"></i>
+                        </button>
+                        <span ng-show="posted" class="alert alert-info">
+                            Xin cảm ơn đã đăng tin.
+                            <i class="fa fa-thumbs-o-up fa-flip-horizontal fa-2x"></i>
+                        </span>
+                    </div>
+                </fieldset>
+            </form>
         </div>
-    </div>
-
+    </section> 
 </div>

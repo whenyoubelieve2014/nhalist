@@ -193,7 +193,6 @@
     <Compile Include="ExtensionMethods\UnityContainerExtension.cs" />
     <Compile Include="ExtensionMethods\VersionAppender.cs" />
     <Compile Include="ExtensionMethods\VersionProvider.cs" />
-    <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -585,6 +584,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Filters\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

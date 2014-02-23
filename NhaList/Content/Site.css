@@ -26,6 +26,11 @@ footer > .container > p {
     margin-top: 10px;
 }
 
+.push-down-1-label {
+    padding-left: 0;
+    padding-top: 24px;
+}
+
 .wrapper > .container { padding-top: 90px; }
 
 input, button, .btn {
