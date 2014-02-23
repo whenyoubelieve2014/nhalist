@@ -15,17 +15,23 @@
         '$scope', '$timeout', function ($scope, $timeout) {
             $scope.handleSubmit = function() {
                 $scope.validating = true;
-                var isComplete = function () {
+                var count = 0;
+                $scope.updateAddress = function () {
+                    $scope.formattedAddress = ++count;
+                    $scope.noGeoResults = $scope.nearBy && false;
+                };
+                var checkCompletion = function () {
                     return $scope.validating && $scope.phone && $scope.email && $scope.nearBy && $scope.text;
                 };
-                var isValid = function() {
-                    return true;
+                var checkValidity = function() {
+                    return checkCompletion() && true;
                 };
-                if (!isComplete() || !isValid()) return false;
+                if (!checkValidity()) return false;
                 $scope.posting = true;
+                $scope.validating = false;
 
-                $timeout(function() {
-                    $scope.validating = false;
+                $timeout(function () {
+                    $scope.posting = false;
                     $scope.posted = true;
                 }, 1000);
                 return true;
