@@ -6,37 +6,15 @@ TODO:
 3. save results to db
 */
 angular
-    .module('geocoder', [])
+    .module('geocoder', ['ajax'])
     .factory('localGeoService', [
-        '$timeout', function ($timeout) {
-            var cached = [
+        '$timeout', function($timeout) {
+            var cachedResults = [
                 {
                     address: 'dc',
                     googleResponse: {
                         "results": [
                             {
-                                /*"address_components": [
-                                    {
-                                        "long_name": "Washington",
-                                        "short_name": "Washington",
-                                        "types": ["locality", "political"]
-                                    },
-                                    {
-                                        "long_name": "District of Columbia",
-                                        "short_name": "District of Columbia",
-                                        "types": ["administrative_area_level_2", "political"]
-                                    },
-                                    {
-                                        "long_name": "District of Columbia",
-                                        "short_name": "DC",
-                                        "types": ["administrative_area_level_1", "political"]
-                                    },
-                                    {
-                                        "long_name": "United States",
-                                        "short_name": "US",
-                                        "types": ["country", "political"]
-                                    }
-                                ],*/
                                 "formatted_address": "Washington, DC, USA",
                                 "geometry": {
                                     "bounds": {
@@ -68,18 +46,6 @@ angular
                                 "types": ["locality", "political"]
                             },
                             {
-                                /*"address_components": [
-                                    {
-                                        "long_name": "District of Columbia",
-                                        "short_name": "DC",
-                                        "types": ["administrative_area_level_1", "political"]
-                                    },
-                                    {
-                                        "long_name": "United States",
-                                        "short_name": "US",
-                                        "types": ["country", "political"]
-                                    }
-                                ],*/
                                 "formatted_address": "District of Columbia, USA",
                                 "geometry": {
                                     "bounds": {
@@ -110,15 +76,14 @@ angular
                                 },
                                 "types": ["administrative_area_level_1", "political"]
                             }
-                        ],
-                        "status": "OK"
+                        ]
                     }
                 }
             ];
-            var geocode = function(options, callback) {
-                if (!options || !callback) return;
-                var address = options.address;
-                var found = $.grep(cached, function(item) {
+            var geocode = function(data, callback) {
+                if (!data || !callback) return;
+                var address = data.address;
+                var found = $.grep(cachedResults, function(item) {
                     return item && item.address && address && item.address.toUpperCase() === address.toUpperCase();
                 });
                 if (found && found.length) {
@@ -132,23 +97,72 @@ angular
                     callback(null, window.google.maps.GeocoderStatus.ZERO_RESULTS);
                 });
             };
+            var save = function (address, results) {
+                var newItem = {
+                    address: address,
+                    googleResponse: {
+                        results: results
+                    }
+                };
+                cachedResults.push(newItem);
+            };
             return {
-                geocode: geocode
+                geocode: geocode,
+                save: save
+            };
+        }
+    ])
+    .factory('dbGeoService', [
+        'ajaxService', function(ajaxService) {
+            var geocode = function(data, callback) {
+                if (!data || !callback) return;
+                var returnZeroResultsToCallback = function() {
+                    callback(null, window.google.maps.GeocoderStatus.ZERO_RESULTS);
+                };
+                ajaxService.getGeoSearch(data.address, function(success) {
+                    if (success) {
+                        callback(success, window.google.maps.GeocoderStatus.OK);
+                    }
+                    returnZeroResultsToCallback();
+                }, returnZeroResultsToCallback);
+            };
+            var save = function(address, results) {
+                var newItem = {
+                    AddressToSearch: address,
+                    GoogleResponse: {
+                        results: results
+                    }
+                };
+                ajaxService.postGeoSearch(newItem);
+            };
+            return {
+                geocode: geocode,
+                save: save
             };
         }
     ])
     .factory('geocoderService', [
-        '$timeout', 'localGeoService', function($timeout, localGeoService) {
+        '$timeout', 'localGeoService', 'dbGeoService', function($timeout, localGeoService, dbGeoService) {
+            var googleServiceName = 'google.maps.Geocoder';
             var services = [
-                { name: 'localGeoService', obj: localGeoService }
-                //,{ name: 'google.maps.Geocoder', obj: new window.google.maps.Geocoder() }
+                { name: 'localGeoService', obj: localGeoService },
+                { name: 'dbGeoService', obj: dbGeoService }, { name: googleServiceName, obj: new window.google.maps.Geocoder() }
             ];
-            var validate = function (results, status) {
+            var validate = function(results, status) {
                 return results && results.length && status === window.google.maps.GeocoderStatus.OK;
             };
 
             var getLatLong = function(nearBy, callback) {
                 var addressWrapper = { address: nearBy };
+
+                var save = function(address, results) {
+                    $.each(services, function(index, service) {
+                        if (service.save) {
+                            service.save(address, results);
+                        }
+                    });
+                };
+
                 var tryService = function(i) {
                     if (i >= services.length) {
                         //all services have been tried
@@ -177,16 +191,17 @@ angular
                             return;
                         }
                         if (callback) {
-                            $timeout(function() {
-                                callback(results, status);
-                            });
+                            callback(results, status);
+                            if (service.name === 'google.maps.Geocoder') {
+                                save(addressWrapper.address, results);
+                            }
                         }
                     });
                 };
                 tryService(0);
             };
 
-       
+
             return {
                 getLatLong: getLatLong,
                 validate: validate
