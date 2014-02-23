@@ -1,7 +1,7 @@
 ﻿angular.module('app', [
     //services
     'ngRoute', 'appRoutes',
-    'geocoder',
+    'geocoder','ajax',
     //controllers
     'home', 'search'
 ]);

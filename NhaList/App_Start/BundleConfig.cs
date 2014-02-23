@@ -22,10 +22,8 @@ namespace NhaList
 
             bundles.Add(new ScriptBundle("~/bundles/app")
                 .Include("~/Scripts/appRoutes.js")
-                //.Include("~/Scripts/Services/ngStorage.js")
-                .Include("~/Scripts/Services/geocoder.js")
-                .Include("~/Scripts/Controllers/home.js")
-                .Include("~/Scripts/Controllers/search.js")
+                .Include("~/Scripts/Services/*.js")
+                .Include("~/Scripts/Controllers/*.js")
                 .Include("~/Scripts/app.js")
                 );
 

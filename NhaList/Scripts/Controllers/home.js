@@ -1,5 +1,5 @@
 ﻿angular
-    .module('home', [])
+    .module('home', ['ajax'])
     .controller('homePageCtrlr', function() {})
     .controller('searchCtrlr', [
         '$scope', '$location', function($scope, $location) {
@@ -12,7 +12,7 @@
         }
     ])
     .controller('postCtrlr', [
-        '$scope', '$timeout', function ($scope, $timeout) {
+        '$scope', '$timeout', 'ajaxService', function ($scope, $timeout, ajaxService) {
             $scope.handleSubmit = function() {
                 $scope.validating = true;
                 var count = 0;
@@ -30,10 +30,15 @@
                 $scope.posting = true;
                 $scope.validating = false;
 
-                $timeout(function () {
+                ajaxService.createPost({
+                    phone: $scope.phone,
+                    email: $scope.email,
+                    address: {},
+                    text: $scope.text
+                }, function() {
                     $scope.posting = false;
                     $scope.posted = true;
-                }, 1000);
+                });
                 return true;
             };
         }

@@ -188,6 +188,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AngularController.cs" />
+    <Compile Include="Controllers\API\PostController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="ExtensionMethods\HtmlHelperExtension.cs" />
     <Compile Include="ExtensionMethods\UnityContainerExtension.cs" />
@@ -546,8 +547,8 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\Services\ajax.js" />
     <Content Include="Scripts\Services\geocoder.js" />
-    <Content Include="Scripts\Services\ngStorage.js" />
     <Content Include="Scripts\ui-bootstrap-0.10.0.js" />
     <Content Include="Scripts\ui-bootstrap-0.10.0.min.js" />
     <Content Include="Scripts\ui-bootstrap-tpls-0.10.0.js" />
