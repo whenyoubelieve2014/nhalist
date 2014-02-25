@@ -1,25 +1,16 @@
-﻿using Microsoft.Practices.Unity;
+﻿using System;
+using Microsoft.Practices.Unity;
 
 namespace NhaList.ExtensionMethods
 {
-    public static class UnityExtension
+    public static class ObjectFactory
     {
-        internal static UnityContainer DefaultContainer;
-
-        static UnityExtension()
-        {
-            DefaultContainer = new UnityContainer();
-            DefaultContainer.RegisterTypes(
-                AllClasses.FromLoadedAssemblies(),
-                WithMappings.FromMatchingInterface,
-                WithName.Default);
-            var singleton = new ContainerControlledLifetimeManager();
-            DefaultContainer.RegisterType<IVersionAppender, VersionAppender>(singleton);
-        }
+        internal static IUnityContainer DefaultContainer;
 
         public static T Resolve<T>()
         {
-            return DefaultContainer.Resolve<T>();
+            if (DefaultContainer != null) return DefaultContainer.Resolve<T>();
+            throw new NullReferenceException("UnityExtension.DefaultContainer");
         }
     }
 }

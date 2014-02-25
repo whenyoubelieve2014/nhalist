@@ -13,7 +13,7 @@ namespace NhaList.ExtensionMethods
 
         public static string AppendVersionTo(string path)
         {
-            var appender = UnityExtension.Resolve<IVersionAppender>();
+            var appender = ObjectFactory.Resolve<IVersionAppender>();
             return appender.Append(path);
         }
 

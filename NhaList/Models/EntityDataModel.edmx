@@ -24,6 +24,7 @@
           <Property Name="Address" Type="nvarchar" MaxLength="250" Nullable="false" />
           <Property Name="Latitude" Type="float" Nullable="false" />
           <Property Name="Longtitude" Type="float" Nullable="false" />
+          <Property Name="Point" Type="geography" StoreGeneratedPattern="Computed" />
           <Property Name="Text" Type="nvarchar(max)" Nullable="false" />
           <Property Name="CreatedOn" Type="datetime" Nullable="false" />
         </EntityType>
@@ -60,6 +61,7 @@
           <Property Name="Longtitude" Type="Double" Nullable="false" />
           <Property Name="Text" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Point" Type="Geography" annotation:StoreGeneratedPattern="Computed" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -80,6 +82,7 @@
           <EntitySetMapping Name="Posts">
             <EntityTypeMapping TypeName="NhaListModel.Post">
               <MappingFragment StoreEntitySet="Post">
+                <ScalarProperty Name="Point" ColumnName="Point" />
                 <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
                 <ScalarProperty Name="Text" ColumnName="Text" />
                 <ScalarProperty Name="Longtitude" ColumnName="Longtitude" />

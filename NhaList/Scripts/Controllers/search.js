@@ -12,7 +12,6 @@
                 geocoderService.getLatLong($scope.nearBy, function (results, status) {
                     $scope.searching = false;
                     $scope.noResults = !geocoderService.validate(results, status);
-                    $scope.$apply();
                 });
             }
         }

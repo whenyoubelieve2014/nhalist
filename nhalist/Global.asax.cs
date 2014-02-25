@@ -13,6 +13,8 @@ namespace NhaList
     {
         protected void Application_Start()
         {
+            UnityBootstrap.Bootstrapper.Initialise(GlobalConfiguration.Configuration);
+
             AreaRegistration.RegisterAllAreas();
 
             WebApiConfig.Register(GlobalConfiguration.Configuration);

@@ -127,10 +127,10 @@ angular
                 }, returnZeroResultsToCallback);
             };
             var save = function(address, results) {
-                var newItem = {
+                var newItem = {/*NhaList.Models.GeoSearch*/
                     AddressToSearch: address,
                     GoogleResponse: {
-                        results: results
+                        results: JSON.stringify(results)
                     }
                 };
                 ajaxService.postGeoSearch(newItem);
@@ -146,7 +146,8 @@ angular
             var googleServiceName = 'google.maps.Geocoder';
             var services = [
                 { name: 'localGeoService', obj: localGeoService },
-                { name: 'dbGeoService', obj: dbGeoService }, { name: googleServiceName, obj: new window.google.maps.Geocoder() }
+                { name: 'dbGeoService', obj: dbGeoService },
+                { name: googleServiceName, obj: new window.google.maps.Geocoder() }
             ];
             var validate = function(results, status) {
                 return results && results.length && status === window.google.maps.GeocoderStatus.OK;
@@ -157,8 +158,8 @@ angular
 
                 var save = function(address, results) {
                     $.each(services, function(index, service) {
-                        if (service.save) {
-                            service.save(address, results);
+                        if (service.obj.save) {
+                            service.obj.save(address, results);
                         }
                     });
                 };
@@ -168,12 +169,11 @@ angular
                         //all services have been tried
                         //no results found
                         if (callback) {
-                            $timeout(function() {
                                 callback(null, window.google.maps.GeocoderStatus.ZERO_RESULTS);
-                            });
                         }
                         return;
                     }
+                    var serviceName = services[i].name;
                     var service = services[i].obj;
                     service.geocode(addressWrapper, function(results, status) {
                         /*
@@ -185,14 +185,13 @@ angular
                         google.maps.GeocoderStatus.INVALID_REQUEST generally indicates that the query (address or latLng) is missing.
                         */
                         if (!validate(results, status)) {
-                            $timeout(function() {
                                 tryService(++i);
-                            });
                             return;
                         }
+                        console.log(serviceName, results, status);
                         if (callback) {
                             callback(results, status);
-                            if (service.name === 'google.maps.Geocoder') {
+                            if (serviceName === 'google.maps.Geocoder') {
                                 save(addressWrapper.address, results);
                             }
                         }
@@ -200,7 +199,6 @@ angular
                 };
                 tryService(0);
             };
-
 
             return {
                 getLatLong: getLatLong,
