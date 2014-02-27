@@ -120,7 +120,6 @@ angular
                     callback(null, window.google.maps.GeocoderStatus.ZERO_RESULTS);
                 };
                 ajaxService.getGeoSearch(data.address, function(success) {
-                    debugger;
                     if (success && success.GoogleResponse) {
                         //unwrapping
                         var results = $.parseJSON(success.GoogleResponse).results;

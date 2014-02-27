@@ -31,6 +31,7 @@ namespace NhaList
             RegisterTypes(container);
             return container;
         }
+        public const string NAMESPACE_NHALIST = "NhaList";
 
         public void RegisterTypes(IUnityContainer container)
         {
@@ -53,7 +54,8 @@ namespace NhaList
                     return !exclusions.Contains(name)
                            &&
                            (c.Namespace != null &&
-                            c.Namespace.StartsWith("NhaList", StringComparison.OrdinalIgnoreCase));
+                            c.Namespace.StartsWith(NAMESPACE_NHALIST, StringComparison.OrdinalIgnoreCase))
+                            ;
                 })
                 .OrderBy(c => c.FullName);
 

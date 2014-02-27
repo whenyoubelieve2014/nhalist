@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
 using System.Web.Http.Dependencies;
 using Microsoft.Practices.Unity;
 
@@ -24,8 +26,16 @@ namespace NhaList
             {
                 return Container.Resolve(serviceType);
             }
-            catch (ResolutionFailedException)
+            catch (ResolutionFailedException innerException)
             {
+                string msg = string.Format("Cannot resolve type <{0}>", serviceType.FullName);
+                if (serviceType.Namespace != null &&
+                    serviceType.Namespace.StartsWith(UnityBootstrap.NAMESPACE_NHALIST,
+                        StringComparison.OrdinalIgnoreCase))
+                {
+                    throw new InvalidOperationException(msg, innerException);
+                }
+                Trace.TraceError(msg);
                 return null;
             }
         }
@@ -36,9 +46,17 @@ namespace NhaList
             {
                 return Container.ResolveAll(serviceType);
             }
-            catch (ResolutionFailedException)
+            catch (ResolutionFailedException innerException)
             {
-                return new List<object>();
+                string msg = string.Format("Cannot resolve type <{0}>", serviceType.FullName);
+                if (serviceType.Namespace != null &&
+                    serviceType.Namespace.StartsWith(UnityBootstrap.NAMESPACE_NHALIST,
+                        StringComparison.OrdinalIgnoreCase))
+                {
+                    throw new InvalidOperationException(msg, innerException);
+                }
+                Trace.TraceError(msg);
+                return Enumerable.Empty<object>();
             }
         }
 
