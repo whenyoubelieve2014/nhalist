@@ -12,7 +12,7 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="AddressToSearch" Type="nvarchar" MaxLength="250" Nullable="false" />
           <Property Name="GoogleResponse" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" />
         </EntityType>
         <EntityType Name="Post">
           <Key>
@@ -26,7 +26,7 @@
           <Property Name="Longtitude" Type="float" Nullable="false" />
           <Property Name="Point" Type="geography" StoreGeneratedPattern="Computed" />
           <Property Name="Text" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" />
         </EntityType>
         <EntityContainer Name="NhaListModelStoreContainer">
           <EntitySet Name="GeoSearch" EntityType="Self.GeoSearch" Schema="dbo" store:Type="Tables" />
@@ -47,7 +47,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="AddressToSearch" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="GoogleResponse" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="Post">
           <Key>
@@ -60,7 +60,7 @@
           <Property Name="Latitude" Type="Double" Nullable="false" />
           <Property Name="Longtitude" Type="Double" Nullable="false" />
           <Property Name="Text" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
           <Property Name="Point" Type="Geography" annotation:StoreGeneratedPattern="Computed" />
         </EntityType>
       </Schema>

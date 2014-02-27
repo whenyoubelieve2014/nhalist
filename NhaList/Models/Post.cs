@@ -21,7 +21,7 @@ namespace NhaList.Models
         public double Latitude { get; set; }
         public double Longtitude { get; set; }
         public string Text { get; set; }
-        public System.DateTime CreatedOn { get; set; }
+        public Nullable<System.DateTime> CreatedOn { get; set; }
         public System.Data.Entity.Spatial.DbGeography Point { get; set; }
     }
 }

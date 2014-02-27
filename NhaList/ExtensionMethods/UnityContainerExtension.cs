@@ -5,7 +5,7 @@ namespace NhaList.ExtensionMethods
 {
     public static class ObjectFactory
     {
-        internal static IUnityContainer DefaultContainer;
+        public static IUnityContainer DefaultContainer;
 
         public static T Resolve<T>()
         {

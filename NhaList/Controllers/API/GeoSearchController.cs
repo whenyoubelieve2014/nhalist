@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 using NhaList.Models;
@@ -16,11 +15,11 @@ namespace NhaList.Controllers.API
             _provider = provider;
         }
 
-        // GET api/GeoSearch
-        public IEnumerable<string> Get()
-        {
-            return new[] { "value1", "value2" };
-        }
+        //// GET api/GeoSearch
+        //public IEnumerable<string> Get()
+        //{
+        //    return new[] { "value1", "value2" };
+        //}
 
         // GET api/GeoSearch/address
         /// <summary>
@@ -30,17 +29,18 @@ namespace NhaList.Controllers.API
         /// <returns>lat/long</returns>
         public GeoSearch Get(string data)
         {
-            using (var db = new NhaListEntities())
-            {
-                GeoSearch result = db.GeoSearches.FirstOrDefault(
-                    g => string.Compare(g.AddressToSearch, data, StringComparison.OrdinalIgnoreCase) == 0);
-                return result;
-            }
+            GeoSearch result = _provider.Db.GeoSearches.FirstOrDefault(
+                g => string.Compare(g.AddressToSearch, data, StringComparison.OrdinalIgnoreCase) == 0);
+            return result;
         }
 
         // POST api/GeoSearch
         public void Post([FromBody] GeoSearch result)
         {
+            if (Get(result.AddressToSearch) != null)
+                //already exists
+                return;
+
             _provider.Db.GeoSearches.Add(result);
             _provider.Db.SaveChanges();
         }

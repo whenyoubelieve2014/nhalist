@@ -17,6 +17,6 @@ namespace NhaList.Models
         public int Id { get; set; }
         public string AddressToSearch { get; set; }
         public string GoogleResponse { get; set; }
-        public System.DateTime CreatedOn { get; set; }
+        public Nullable<System.DateTime> CreatedOn { get; set; }
     }
 }

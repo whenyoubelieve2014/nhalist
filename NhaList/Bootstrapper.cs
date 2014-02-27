@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Web.Http;
 using System.Web.Mvc;
@@ -33,16 +34,43 @@ namespace NhaList
 
         public void RegisterTypes(IUnityContainer container)
         {
+            //to hit this breakpoint, kill IIS Express
+            //Debugger.Break();
+
+
+            //these types either have special lifetime
+            //or needs to be mapped differently than matching names
+            var exclusions = new[]
+            {
+                typeof (VersionProvider).Name //singleton
+                , typeof (NhaListEntities).Name //perThread
+            };
+
             IOrderedEnumerable<Type> classes = AllClasses.FromLoadedAssemblies()
-                .Where(c => c != typeof (VersionAppender) && c != typeof (NhaListEntities))
+                .Where(c =>
+                {
+                    string name = c.Name;
+                    return !exclusions.Contains(name)
+                           &&
+                           (c.Namespace != null &&
+                            c.Namespace.StartsWith("NhaList", StringComparison.OrdinalIgnoreCase));
+                })
                 .OrderBy(c => c.FullName);
+
             container.RegisterTypes(
                 classes,
                 WithMappings.FromMatchingInterface,
                 WithName.Default);
+            Trace.WriteLine(string.Format("Unity registrations: {0}", container.Registrations.Count()));
+
+            foreach (ContainerRegistration registration in container.Registrations)
+            {
+                Trace.WriteLine(string.Format("{0}-->{1}", registration.RegisteredType.Name,
+                    registration.MappedToType.Name));
+            }
 
             var singleton = new ContainerControlledLifetimeManager();
-            container.RegisterType<IVersionAppender, VersionAppender>(singleton);
+            container.RegisterType<IVersionProvider, VersionProvider>(singleton);
             container.RegisterType<INhaListDbContext, NhaListEntities>(new PerThreadLifetimeManager());
         }
     }

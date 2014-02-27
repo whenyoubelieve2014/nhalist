@@ -169,6 +169,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="GeoSearchControllerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="UnityBootstrapTest.cs" />
@@ -178,6 +179,9 @@
       <Project>{57B49D2F-3EDE-4E3A-8C04-45CA4A3D0DC0}</Project>
       <Name>NhaList</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

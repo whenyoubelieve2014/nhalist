@@ -12,17 +12,19 @@ namespace NhaList.Models
         DbSet<GeoSearch> GeoSearches { get; set; }
         DbSet<Post> Posts { get; set; }
         int SaveChanges();
-        void LogToDebuggerOutput();
+        void LogToTrace();
     }
 
     public partial class NhaListEntities : INhaListDbContext
     {
+        public static Int64 EntityObjectCreatedCount = 0;
+        public Int64 EntityObjectId { get; private set; }
+
         public override int SaveChanges()
         {
             try
             {
                 int result = base.SaveChanges();
-                Debug.Flush();
                 return result;
             }
             catch (DbEntityValidationException validationException)
@@ -42,10 +44,10 @@ namespace NhaList.Models
             }
         }
 
-        public void LogToDebuggerOutput()
+        public void LogToTrace()
         {
-            Trace.WriteLine("LogToDebuggerOutput Starting new instance of NhaListEntities");
-            Database.Log = msg => Trace.WriteLine(msg);
+            Trace.WriteLine("LogToTrace Starting new instance of NhaListEntities");
+            Database.Log = msg => Trace.Write(msg);
         }
     }
 }
