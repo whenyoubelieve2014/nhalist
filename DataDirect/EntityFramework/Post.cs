@@ -12,11 +12,16 @@ namespace DataDirect.EntityFramework
     using System;
     using System.Collections.Generic;
     
-    public partial class GeoSearch
+    public partial class Post
     {
         public int Id { get; set; }
+        public string Phone { get; set; }
+        public string Email { get; set; }
+        public string Text { get; set; }
         public string ApproximateAddress { get; set; }
-        public string GoogleResponse { get; set; }
+        public double Latitude { get; set; }
+        public double Longtitude { get; set; }
+        public System.Data.Entity.Spatial.DbGeography Point { get; set; }
         public Nullable<System.DateTime> CreatedOn { get; set; }
     }
 }

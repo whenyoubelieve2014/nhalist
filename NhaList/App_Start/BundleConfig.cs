@@ -22,15 +22,10 @@ namespace NhaList
 
             bundles.Add(new ScriptBundle("~/bundles/app")
                 .Include("~/Scripts/appRoutes.js")
-                
-                //use this for debugging
                 .Include("~/Scripts/Services/ajax.js")
-                
-                //use this on production
-                //.Include("~/Scripts/Services/*.js")
-                
-                .Include("~/Scripts/Controllers/*.js")
-                .Include("~/Scripts/app.js")
+                .Include("~/Scripts/Controllers/search.js")
+                //.Include("~/Scripts/Controllers/*.js")
+                //.Include("~/Scripts/app.js")
                 );
 
             bundles.Add(new StyleBundle("~/Content/site")

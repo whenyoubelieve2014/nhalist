@@ -48,7 +48,7 @@
                     </div>
                     <div class="form-group" ng-class="{'has-error text-danger': validating && !nearBy}">
                         <label>Tên Thành Phố hoặc Mã Vùng (Zip Code):</label>
-                        <input type="text" autocomplete="off" ng-model="nearBy" ng-blur="updateAddress()" class="form-control" placeholder="Ví dụ: Fallschurch, hoặc 22046" ng-model="nearBy" />
+                        <input type="text" autocomplete="off" ng-model="nearBy" ng-blur="updateAddress()" class="form-control" placeholder="Ví dụ: Fallschurch, hoặc 22046" />
                         <span class="text-success" ng-show="validating && !noGeoResults">{{ formattedAddress }}</span>
                         <span class="text-danger" ng-show="validating && noGeoResults">Không tìm thấy thành phố này trên bản đồ.</span>
                     </div>

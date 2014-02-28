@@ -17,11 +17,12 @@ namespace NhaList.Models
         public int Id { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
-        public string Address { get; set; }
+        public string Text { get; set; }
+        public string ApproximateAddress { get; set; }
+        public string FormattedAddress { get; set; }
         public double Latitude { get; set; }
         public double Longtitude { get; set; }
-        public string Text { get; set; }
-        public Nullable<System.DateTime> CreatedOn { get; set; }
         public System.Data.Entity.Spatial.DbGeography Point { get; set; }
+        public System.DateTime CreatedOn { get; set; }
     }
 }

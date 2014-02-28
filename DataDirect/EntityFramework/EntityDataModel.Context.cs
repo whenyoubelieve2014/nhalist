@@ -26,5 +26,6 @@ namespace DataDirect.EntityFramework
         }
     
         public virtual DbSet<GeoSearch> GeoSearches { get; set; }
+        public virtual DbSet<Post> Posts { get; set; }
     }
 }

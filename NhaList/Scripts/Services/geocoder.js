@@ -133,7 +133,7 @@ angular
             var save = function(address, results) {
                 //NhaList.Models.GeoSearch
                 var newItem = {
-                    AddressToSearch: address,
+                    ApproximateAddress: address,
                     GoogleResponse:
                         //wrapping
                         JSON.stringify({
@@ -211,10 +211,32 @@ angular
                 };
                 tryService(0);
             };
-
+        var getFormattedAddress = function(nearBy, onSuccess, onError) {
+            getLatLong(nearBy, function(results, status) {
+                var noResults = !validate(results, status);
+                if (noResults) {
+                    if (onError) onError('No Results');
+                    return;
+                }
+                if (onSuccess) {
+                    var first = results[0] || {};
+                    var formatted = first.formatted_address || {};
+                    //"location": {
+                    //    "lat": 38.90723089999999,
+                    //    "lng": -77.0364641
+                    //},
+                    var geo = first.geometry || {};
+                    var location = geo.location || {};
+                    var lat = location.lat || location.d;
+                    var lng = location.lng || location.e;
+                    onSuccess(formatted, lat, lng);
+                }
+            });
+        };
             return {
                 getLatLong: getLatLong,
-                validate: validate
+                getFormattedAddress: getFormattedAddress,
+                validate: validate,
             };
         }
     ]);

@@ -1,35 +1,46 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Web.Http;
+using NhaList.Models;
 
 namespace NhaList.Controllers.API
 {
     public class PostController : ApiController
     {
-        // GET api/post
-        public IEnumerable<string> Get()
-        {
-            return new[] {"value1", "value2"};
-        }
+        //// GET api/post
+        //public IEnumerable<string> Get()
+        //{
+        //    return new[] {"value1", "value2"};
+        //}
 
-        // GET api/post/5
-        public string Get(int id)
+      
+
+        private readonly INhaListEntityProvider _provider;
+
+        public PostController(INhaListEntityProvider provider)
         {
-            return "value";
+            if (provider == null) throw new ArgumentNullException("provider");
+            _provider = provider;
         }
 
         // POST api/post
-        public void Post([FromBody] string value)
+        public void Post([FromBody] Post post)
         {
+            if (post == null) throw new ArgumentNullException("post");
+
+            post.CreatedOn = DateTime.Now;
+            _provider.Db.Posts.Add(post);
+            _provider.Db.SaveChanges();
         }
 
-        // PUT api/post/5
-        public void Put(int id, [FromBody] string value)
-        {
-        }
+        //// PUT api/post/5
+        //public void Put(int id, [FromBody] string value)
+        //{
+        //}
 
-        // DELETE api/post/5
-        public void Delete(int id)
-        {
-        }
+        //// DELETE api/post/5
+        //public void Delete(int id)
+        //{
+        //}
     }
 }

@@ -30,17 +30,17 @@ namespace NhaList.Controllers.API
         public GeoSearch Get(string data)
         {
             GeoSearch result = _provider.Db.GeoSearches.FirstOrDefault(
-                g => string.Compare(g.AddressToSearch, data, StringComparison.OrdinalIgnoreCase) == 0);
+                g => string.Compare(g.ApproximateAddress, data, StringComparison.OrdinalIgnoreCase) == 0);
             return result;
         }
 
         // POST api/GeoSearch
         public void Post([FromBody] GeoSearch result)
         {
-            if (Get(result.AddressToSearch) != null)
+            if (Get(result.ApproximateAddress) != null)
                 //already exists
                 return;
-
+            result.CreatedOn = DateTime.Now;
             _provider.Db.GeoSearches.Add(result);
             _provider.Db.SaveChanges();
         }

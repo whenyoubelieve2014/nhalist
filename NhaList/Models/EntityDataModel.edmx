@@ -10,9 +10,9 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="AddressToSearch" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="ApproximateAddress" Type="nvarchar" MaxLength="250" Nullable="false" />
           <Property Name="GoogleResponse" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Post">
           <Key>
@@ -21,12 +21,13 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Phone" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Address" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Text" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ApproximateAddress" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="FormattedAddress" Type="nvarchar" MaxLength="250" />
           <Property Name="Latitude" Type="float" Nullable="false" />
           <Property Name="Longtitude" Type="float" Nullable="false" />
           <Property Name="Point" Type="geography" StoreGeneratedPattern="Computed" />
-          <Property Name="Text" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityContainer Name="NhaListModelStoreContainer">
           <EntitySet Name="GeoSearch" EntityType="Self.GeoSearch" Schema="dbo" store:Type="Tables" />
@@ -45,9 +46,9 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="AddressToSearch" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="ApproximateAddress" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="GoogleResponse" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" Nullable="false" />
         </EntityType>
         <EntityType Name="Post">
           <Key>
@@ -56,12 +57,13 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Phone" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Address" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Text" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ApproximateAddress" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="FormattedAddress" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="Latitude" Type="Double" Nullable="false" />
           <Property Name="Longtitude" Type="Double" Nullable="false" />
-          <Property Name="Text" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
           <Property Name="Point" Type="Geography" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -74,7 +76,7 @@
               <MappingFragment StoreEntitySet="GeoSearch">
                 <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
                 <ScalarProperty Name="GoogleResponse" ColumnName="GoogleResponse" />
-                <ScalarProperty Name="AddressToSearch" ColumnName="AddressToSearch" />
+                <ScalarProperty Name="ApproximateAddress" ColumnName="ApproximateAddress" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -82,12 +84,13 @@
           <EntitySetMapping Name="Posts">
             <EntityTypeMapping TypeName="NhaListModel.Post">
               <MappingFragment StoreEntitySet="Post">
-                <ScalarProperty Name="Point" ColumnName="Point" />
                 <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="Point" ColumnName="Point" />
                 <ScalarProperty Name="Longtitude" ColumnName="Longtitude" />
                 <ScalarProperty Name="Latitude" ColumnName="Latitude" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="FormattedAddress" ColumnName="FormattedAddress" />
+                <ScalarProperty Name="ApproximateAddress" ColumnName="ApproximateAddress" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Phone" ColumnName="Phone" />
                 <ScalarProperty Name="Id" ColumnName="Id" />

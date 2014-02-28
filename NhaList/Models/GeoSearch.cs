@@ -15,8 +15,8 @@ namespace NhaList.Models
     public partial class GeoSearch
     {
         public int Id { get; set; }
-        public string AddressToSearch { get; set; }
+        public string ApproximateAddress { get; set; }
         public string GoogleResponse { get; set; }
-        public Nullable<System.DateTime> CreatedOn { get; set; }
+        public System.DateTime CreatedOn { get; set; }
     }
 }
