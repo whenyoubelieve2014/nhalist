@@ -1,9 +1,9 @@
 'use strict';
 /*
 TODO:
-1. save results to cache
-2. retrieve results from db
-3. save results to db
+. save results to cache
+. retrieve results from db
+. save results to db
 */
 angular
     .module('geocoder', ['ajax'])
@@ -130,14 +130,29 @@ angular
                     returnZeroResultsToCallback();
                 }, returnZeroResultsToCallback);
             };
+            var formatResults = function(results) {
+                $.each(results, function(index, result) {
+                    if (index!==0) {
+                        return;
+                    }
+                    var geo = result.geometry;
+                    var bounds = geo.bounds;
+                    var ne = bounds.northeast || bounds.getNorthEast();
+                    var sw = bounds.southwest || bounds.getSouthWest();
+                    geo.bounds.northeast = { lat: ne.lat(), lng: ne.lng() };
+                    geo.bounds.southwest = { lat: sw.lat(), lng: sw.lng() };
+                });
+                return results;
+            };
             var save = function(address, results) {
                 //NhaList.Models.GeoSearch
+                var formattedResults = formatResults(results);
                 var newItem = {
                     ApproximateAddress: address,
                     GoogleResponse:
                         //wrapping
                         JSON.stringify({
-                            results: results
+                            results: formattedResults
                         })
                 };
                 ajaxService.postGeoSearch(newItem);
@@ -211,6 +226,40 @@ angular
                 };
                 tryService(0);
             };
+        var getBoundary = function(results, callback) {
+            results = results || [];
+            if (!results.length) {
+                return;
+            }
+            var result = results[0] || {};
+            var geometry = result.geometry || {};
+            var bounds = geometry.bounds|| {};
+            var ne = bounds.northeast || {};
+            var sw = bounds.southwest || {};
+            var boundary = {
+                minLat: Math.min(ne.lat, sw.lat),
+                minLong: Math.min(ne.lng, sw.lng),
+                maxLat: Math.max(ne.lat, sw.lat),
+                maxLong: Math.max(ne.lng, sw.lng)
+            };
+            if (callback) {
+                callback(boundary);
+            }
+            //"results": [
+            //                {
+            //                    "formatted_address": "Washington, DC, USA",
+            //                    "geometry": {
+            //                        "bounds": {
+            //                            "northeast": {
+            //                                "lat": 38.995548,
+            //                                "lng": -76.90939299999999
+            //                            },
+            //                            "southwest": {
+            //                                "lat": 38.7916449,
+            //                                "lng": -77.119759
+            //                            }
+            //                        },
+        };
         var getFormattedAddress = function(nearBy, onSuccess, onError) {
             getLatLong(nearBy, function(results, status) {
                 var noResults = !validate(results, status);
@@ -235,8 +284,9 @@ angular
         };
             return {
                 getLatLong: getLatLong,
+                //getBoundary: getBoundary,
                 getFormattedAddress: getFormattedAddress,
-                validate: validate,
+                validate: validate
             };
         }
     ]);
