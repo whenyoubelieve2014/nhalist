@@ -21,11 +21,11 @@ namespace NhaList
                 "~/Scripts/bootstrap*"));
 
             bundles.Add(new ScriptBundle("~/bundles/app")
+                .Include("~/Scripts/Services/*.js")
+                //.Include("~/Scripts/Controllers/search.js")
+                .Include("~/Scripts/Controllers/*.js")
                 .Include("~/Scripts/appRoutes.js")
-                .Include("~/Scripts/Services/ajax.js")
-                .Include("~/Scripts/Controllers/search.js")
-                //.Include("~/Scripts/Controllers/*.js")
-                //.Include("~/Scripts/app.js")
+                .Include("~/Scripts/app.js")
                 );
 
             bundles.Add(new StyleBundle("~/Content/site")
