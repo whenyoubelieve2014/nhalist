@@ -176,6 +176,9 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="..\NhaList\Properties\SharedAssemblyInfo.cs">
+      <Link>Properties\SharedAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="AutoMapperBootstrapTest.cs" />
     <Compile Include="Fast.cs" />
     <Compile Include="GeoSearchControllerTest.cs" />
@@ -189,7 +192,7 @@
       <Name>Convenience</Name>
     </ProjectReference>
     <ProjectReference Include="..\NhaList\NhaList.csproj">
-      <Project>{57B49D2F-3EDE-4E3A-8C04-45CA4A3D0DC0}</Project>
+      <Project>{57b49d2f-3ede-4e3a-8c04-45ca4a3d0dc0}</Project>
       <Name>NhaList</Name>
     </ProjectReference>
   </ItemGroup>

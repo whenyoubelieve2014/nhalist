@@ -8,6 +8,6 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("NhaList")]
 [assembly: AssemblyDescription("NhaList")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCulture("vi-VN")]
+[assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]
 [assembly: Guid("4802d3b5-633b-47fe-834f-f7e7b3bca30a")]
