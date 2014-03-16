@@ -7,9 +7,12 @@
         <section class="well" ng-controller="searchCtrlr">
             <form role="form" ng-submit="handleSubmit()" >
                 <fieldset>
-                    <legend>Tìm Nhà Cho Thuê</legend>
+                    <legend>
+                        Tìm Nhà Cho Thuê
+                    </legend>
                     <div class="form-group" >
-                        <label>Tên Thành Phố hoặc Mã Vùng (Zip Code):</label>
+                        <label class="hidden-inline-xs hidden-inline-sm">Tên Thành Phố hoặc Mã Vùng (Zip Code):</label>
+                        <h5 class="hidden-lg hidden-md">Tên Thành Phố hoặc Mã Vùng (Zip Code):</h5>
                         <input type="text" autocomplete="off"  class="form-control" placeholder="Ví dụ: Fallschurch, hoặc 22046" ng-model="nearBy" />
                     </div>
                     <button class="btn btn-success" type="submit">
