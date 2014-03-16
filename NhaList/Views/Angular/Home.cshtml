@@ -3,7 +3,7 @@
     Layout = null;
 }
 <div class="row">
-    <section class="col-md-6">
+    <section class="col-xs-12 col-md-6">
         <section class="well" ng-controller="searchCtrlr">
             <form role="form" ng-submit="handleSubmit()" >
                 <fieldset>
@@ -29,18 +29,18 @@
         </section>
     </section>
     @* Right Section Starts *@
-    <section class="col-md-6">
+    <section class="col-xs-12 col-md-6">
         <div class="well">
             <form role="form" ng-controller="postCtrlr" novalidate ng-submit="handleSubmit()">
                 <fieldset>
                     <legend>Cho Thuê Nhà</legend>
                     <div class="form-group" >
                         <div class="row">
-                            <div class="col-md-6" ng-class="{'has-error text-danger': validating && !phone}">
+                            <div class="col-xs-12 col-md-6" ng-class="{'has-error text-danger': validating && !phone}">
                                 <label>Số Điện Thoại:</label>
                                 <input type="tel" autocomplete="off" ng-model="phone"  class="form-control" placeholder="Ví dụ: 7037777777" />
                             </div>
-                            <div  class="col-md-6" ng-class="{'has-error text-danger': validating && !email}">
+                            <div  class="col-xs-12 col-md-6" ng-class="{'has-error text-danger': validating && !email}">
                                 <label>hoặc Email:</label>
                                 <input type="email" autocomplete="off" ng-model="email" class="form-control" placeholder="Ví dụ: nguyenngocng@yahoo.com" />
                             </div>
