@@ -21,6 +21,7 @@ namespace NhaList
                 "~/Scripts/bootstrap*"));
 
             bundles.Add(new ScriptBundle("~/bundles/app")
+                .Include("~/Scripts/Filters/*.js")
                 .Include("~/Scripts/Services/*.js")
                 //.Include("~/Scripts/Controllers/search.js")
                 .Include("~/Scripts/Controllers/*.js")

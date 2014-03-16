@@ -16,7 +16,7 @@ namespace NhaList
 
         public IUnityContainer Initialise(HttpConfiguration webApiConfig = null)
         {
-            IUnityContainer container = BuildUnityContainer();
+            IUnityContainer container = buildUnityContainer();
             ObjectFactory.DefaultContainer = container;
 
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
@@ -25,7 +25,7 @@ namespace NhaList
         }
 
 
-        private IUnityContainer BuildUnityContainer()
+        private IUnityContainer buildUnityContainer()
         {
             var container = new UnityContainer();
             RegisterTypes(container);

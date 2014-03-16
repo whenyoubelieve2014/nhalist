@@ -1,0 +1,140 @@
+﻿@import url('bootstrap.less');
+
+body {
+    background-color: #ffffff;
+    color: #333333;
+    font-family: "Roboto Condensed", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.428571429;
+}
+
+header, footer {
+    background-color: #333333;
+    color: #ffffff;
+}
+
+header > h1 {
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.white-link {
+    color: white !important;
+    text-decoration: none !important;
+}
+
+footer > .container > p {
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.push-down-1-label {
+    padding-left: 0;
+    padding-top: 24px;
+}
+
+.wrapper > .container { padding-top: 90px; }
+
+input, button, .btn {
+    margin-bottom: 5px;
+}
+
+.input-text-long {
+    width: 180px;
+}
+
+.btn-yellow {
+    color: darkgreen;
+    background-color: gold;
+}
+
+.alert {
+    margin-bottom: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+    color: inherit;
+    font-family: "Roboto Condensed", Helvetica, Arial, sans-serif;
+    font-weight: 500;
+    line-height: 1.1;
+}
+
+.thin-font { font-family: 'Source Sans Pro', sans-serif; }
+
+/* Sticky footer styles
+-------------------------------------------------- */
+
+html,
+body {
+    height: 100%;
+    /* The html and body elements cannot have any padding or margin. */
+}
+
+/* Wrapper for page content to push down footer */
+
+.wrapper {
+    height: auto !important;
+    height: 100%;
+    /* Negative indent footer by it's height */
+    margin: -69px auto -60px;
+    min-height: 100%;
+}
+
+/* Set the fixed height of the footer here */
+
+.push,
+footer { height: 60px; }
+
+/* Lastly, apply responsive CSS fixes as necessary */
+
+@media (max-width: 767px) {
+    footer {
+        margin-left: -20px;
+        margin-right: -20px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
+
+/* Google fonts
+-------------------------------------------------- */
+
+@font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    src: url(http://themes.googleusercontent.com/static/fonts/roboto/v10/EsO9S3LLRZHk3Wc3E-sW3A.eot);
+    src: local('Roboto Regular'), local('Roboto-Regular'), url(http://themes.googleusercontent.com/static/fonts/roboto/v10/EsO9S3LLRZHk3Wc3E-sW3A.eot) format('embedded-opentype'), url(http://themes.googleusercontent.com/static/fonts/roboto/v10/HV_H5nosKj8mZupFxrHqHA.woff) format('woff');
+}
+
+@font-face {
+    font-family: 'Source Sans Pro';
+    font-style: normal;
+    font-weight: 300;
+    src: url(http://themes.googleusercontent.com/static/fonts/sourcesanspro/v7/toadOcfmlt9b38dHJxOBGMnd7HWCmWIMuBbynTchMEA.eot);
+    src: local('Source Sans Pro Light'), local('SourceSansPro-Light'), url(http://themes.googleusercontent.com/static/fonts/sourcesanspro/v7/toadOcfmlt9b38dHJxOBGMnd7HWCmWIMuBbynTchMEA.eot) format('embedded-opentype'), url(http://themes.googleusercontent.com/static/fonts/sourcesanspro/v7/toadOcfmlt9b38dHJxOBGPp6i7R5xQdyoqQVVjABmmY.woff) format('woff');
+}
+.reset-to-inherit {
+        background: inherit;
+        color: inherit;
+        height: inherit;
+        margin: inherit;
+        padding: inherit;
+}
+article > header {
+     .reset-to-inherit
+}
+article > footer  {
+     .reset-to-inherit
+}

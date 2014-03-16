@@ -11,7 +11,7 @@ namespace NhaList.Models
 {
     using System;
     using System.Collections.Generic;
-    
+
     public partial class Post
     {
         public int Id { get; set; }

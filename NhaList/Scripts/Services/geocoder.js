@@ -217,10 +217,10 @@ angular
                             return;
                         }
                         if (callback) {
-                            callback(results, status);
                             if (serviceName === 'google.maps.Geocoder') {
                                 save(addressWrapper.address, results);
                             }
+                            callback(results, status);
                         }
                     });
                 };
@@ -284,7 +284,7 @@ angular
         };
             return {
                 getLatLong: getLatLong,
-                //getBoundary: getBoundary,
+                getBoundary: getBoundary,
                 getFormattedAddress: getFormattedAddress,
                 validate: validate
             };

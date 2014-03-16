@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Aristotle.Project6.Convenience
+namespace NhaList.Convenience.ExtensionMethods
 {
     public static class EnumerableExtension
     {

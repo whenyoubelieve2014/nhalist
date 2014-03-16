@@ -46,9 +46,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AssemblyConveniently.cs" />
-    <Compile Include="EnumerableExtension.cs" />
-    <Compile Include="StringExtension.cs" />
+    <Compile Include="Types\AssemblyConveniently.cs" />
+    <Compile Include="Types\Conveniently.Main.cs" />
+    <Compile Include="ExtensionMethods\EnumerableExtension.cs" />
+    <Compile Include="Types\Conveniently.Culture.cs" />
+    <Compile Include="ExtensionMethods\StringExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

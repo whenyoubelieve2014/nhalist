@@ -3,7 +3,7 @@ angular
     .module('ajax', [])
     .factory('ajaxService', [
         '$http', function($http) {
-            var models = ['GeoSearch', 'Post'];
+            var models = ['GeoSearch', 'Post', 'Search'];
             var service = {};
             $.each(models, function(index, model) {
                 var postFunc = function(data, callbackSucess, callbackError) {

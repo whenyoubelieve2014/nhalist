@@ -3,5 +3,7 @@
     'ngRoute', 'appRoutes',
     'geocoder','ajax',
     //controllers
-    'home', 'search'
+    'home', 'search',
+    //filters
+    'truncate'
 ]);

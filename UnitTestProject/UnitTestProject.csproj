@@ -38,6 +38,12 @@
     <Reference Include="Antlr3.Runtime">
       <HintPath>..\packages\WebGrease.1.3.0\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.3.1.1\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper.Net4">
+      <HintPath>..\packages\AutoMapper.3.1.1\lib\net40\AutoMapper.Net4.dll</HintPath>
+    </Reference>
     <Reference Include="DotNetOpenAuth.AspNet">
       <HintPath>..\packages\DotNetOpenAuth.AspNet.4.1.4.12333\lib\net45-full\DotNetOpenAuth.AspNet.dll</HintPath>
     </Reference>
@@ -95,6 +101,7 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="System.Net.Http" />
@@ -169,12 +176,18 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="AutoMapperBootstrapTest.cs" />
+    <Compile Include="Fast.cs" />
     <Compile Include="GeoSearchControllerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="SmartTranslationTest.cs" />
     <Compile Include="UnityBootstrapTest.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Convenience\Convenience.csproj">
+      <Project>{5F81BD83-7085-48C6-B331-E0B7E098594D}</Project>
+      <Name>Convenience</Name>
+    </ProjectReference>
     <ProjectReference Include="..\NhaList\NhaList.csproj">
       <Project>{57B49D2F-3EDE-4E3A-8C04-45CA4A3D0DC0}</Project>
       <Name>NhaList</Name>

@@ -13,6 +13,7 @@ namespace NhaList
     {
         protected void Application_Start()
         {
+            AutoMapperBootstrap.Initialise();
             UnityBootstrap.Bootstrapper.Initialise(GlobalConfiguration.Configuration);
 
             AreaRegistration.RegisterAllAreas();

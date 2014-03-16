@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Web.Http;
 using NhaList.Models;
 
@@ -7,14 +6,6 @@ namespace NhaList.Controllers.API
 {
     public class PostController : ApiController
     {
-        //// GET api/post
-        //public IEnumerable<string> Get()
-        //{
-        //    return new[] {"value1", "value2"};
-        //}
-
-      
-
         private readonly INhaListEntityProvider _provider;
 
         public PostController(INhaListEntityProvider provider)
@@ -33,14 +24,5 @@ namespace NhaList.Controllers.API
             _provider.Db.SaveChanges();
         }
 
-        //// PUT api/post/5
-        //public void Put(int id, [FromBody] string value)
-        //{
-        //}
-
-        //// DELETE api/post/5
-        //public void Delete(int id)
-        //{
-        //}
     }
 }

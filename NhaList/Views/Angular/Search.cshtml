@@ -1,26 +1,62 @@
 ﻿@{
     Layout = null;
 }
-<div class="well well-sm" >
-    <form class="form-inline" role="form" ng-submit="handleSubmit()">
-        <div class="form-group" ng-class="{'has-error': noResults}">
-            <input type="text" autocomplete="off"  class="form-control" placeholder="Thành Phố / Zip Code" ng-model="nearBy" />
-            <button class="btn" ng-disabled="searching" 
-                    ng-class="{'btn-success':!noResults, 'btn-danger':noResults}"
-                    type="submit">
-                <span ng-hide="searching">
-                    <i class="fa fa-search"></i>
-                    Tìm
-                </span>
-                <span ng-show="searching">
-                    <i class="fa fa-spinner fa-spin"></i>
-                    Đang Tìm
-                </span>
-            </button>
-            <span ng-show="nearBy && !searching">
-                <span class="text-danger" ng-show="noResults" >Không tìm được</span>
-                <span class="text-info" ng-hide="noResults" >Tìm được</span>
-            </span>
+<section class="row" >
+    <div class="col-md-12 col-sm-12">
+        <div class="well well-sm">
+            <form class="form-inline " role="form" ng-submit="handleSubmit()">
+                <div class="form-group" ng-class="{'has-error': !searching && (noGeoResults || !count)}">
+                    <input type="text" autocomplete="off"  class="form-control" placeholder="Thành Phố / Zip Code" ng-model="nearBy" />
+                    <button class="btn" ng-disabled="searching" 
+                            ng-class="{'btn-success':!noResults, 'btn-danger':!searching && (noGeoResults || !count)}"
+                            type="submit">
+                        <span ng-hide="searching">
+                            <i class="fa fa-search"></i>
+                            Tìm
+                        </span>
+                        <span ng-show="searching">
+                            <i class="fa fa-spinner fa-spin"></i>
+                            Đang Tìm
+                        </span>
+                    </button>
+                    <span ng-show="nearBy && !searching">
+                        <span class="text-danger" ng-show="noGeoResults" >Không tìm được vùng này. Xin kiểm tra lại tên thành phố hoặc mã vùng.</span>
+                        <span class="text-info" ng-hide="noGeoResults || !count" >Tìm được {{count}} nhà trong vùng.</span>
+                        <span class="text-danger" ng-hide="noGeoResults || count" >Không tìm được nhà nào trong vùng này.</span>
+                    </span>
+                </div>
+            </form>
         </div>
-    </form>
-</div>
+    </div>
+</section>
+<section ng-show="count" class="row">
+    <div ng-repeat="post in posts">
+        <div class="col-sm-12 col-md-6">
+            <div class="well well-sm">
+                <article style="-ms-word-wrap: break-word; word-wrap: break-word">
+                    <header class="text-primary">
+                        <div class="row">
+                            <h4 class="col-sm-12 col-md-4"><i class="fa fa-phone"></i> {{post.Phone}}</h4>
+                            <h5 class="col-sm-12 col-md-8 text-muted text-right">
+                                <a href="#"><i class="fa fa-envelope-o"></i> {{post.Email}}</a>
+                            </h5>
+                        </div>
+                    </header>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <p>{{post.Text | characters:188}}</p>
+                        </div>
+                    </div>
+                    <footer>
+                        <div class="row">
+                            <span class="col-sm-12 text-muted text-right ">
+                                <i class="fa fa-calendar"></i>
+                                Ngày {{post.NgayDang}}
+                            </span>
+                        </div>
+                    </footer>
+                </article>
+            </div>
+        </div>
+    </div>
+</section>

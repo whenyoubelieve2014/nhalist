@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Aristotle.Project6.Convenience
+namespace NhaList.Convenience.ExtensionMethods
 {
     public static class StringExtension
     {
@@ -33,6 +33,25 @@ namespace Aristotle.Project6.Convenience
         public static bool ConvenientlyIsEmpty(this string x)
         {
             return string.IsNullOrWhiteSpace(x);
+        }
+    }
+
+    public static class SmartTranslation
+    {
+        public static string ToSmartString(this DateTime date)
+        {
+            return Smart.Date.Format(date);
+        }
+    }
+
+    public class Smart
+    {
+        public class Date
+        {
+            public static string Format(DateTime date)
+            {
+                return date.ToLongDateString();
+            }
         }
     }
 }
