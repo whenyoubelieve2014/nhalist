@@ -138,3 +138,18 @@ article > header {
 article > footer  {
      .reset-to-inherit
 }
+.hidden-inline-xs .hidden-inline-sm{
+        display: inline !important;
+    }
+@media (max-width: 767px) {
+    .hidden-inline-xs {
+        .hidden-xs;
+        display: none !important;
+    }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+    .hidden-inline-sm {
+        .hidden-xs;
+        display: inline !important;
+    }
+}
