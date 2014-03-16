@@ -17,9 +17,13 @@ namespace NhaList.Models
 
     public partial class NhaListEntities : INhaListDbContext
     {
-        public static Int64 EntityObjectCreatedCount = 0;
-        public Int64 EntityObjectId { get; private set; }
-
+        protected NhaListEntities(string sqlConnStringName):base(sqlConnStringName)
+        {
+        }
+        protected void CallOnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+        }
         public override int SaveChanges()
         {
             try

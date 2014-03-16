@@ -236,6 +236,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>EntityDataModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\EntityDataModel.Views.cs" />
     <Compile Include="Models\GeoSearch.cs">
       <DependentUpon>EntityDataModel.tt</DependentUpon>
     </Compile>

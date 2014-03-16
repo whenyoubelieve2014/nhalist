@@ -1,5 +1,10 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Data.Entity;
 using System.Diagnostics;
+using System.Linq;
+using System.Reflection;
 
 namespace NhaList.Convenience.Types
 {
@@ -22,5 +27,7 @@ namespace NhaList.Convenience.Types
             Trace.WriteLine(string.Format("tryReturn {0}", fullname));
             return result;
         }
+
+        
     }
 }

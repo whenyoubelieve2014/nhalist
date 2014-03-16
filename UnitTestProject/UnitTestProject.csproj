@@ -180,6 +180,7 @@
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="AutoMapperBootstrapTest.cs" />
+    <Compile Include="DatabaseBootstrapTest.cs" />
     <Compile Include="Fast.cs" />
     <Compile Include="GeoSearchControllerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
