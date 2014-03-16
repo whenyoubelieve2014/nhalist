@@ -25,7 +25,7 @@ namespace NhaList.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<GeoSearch> GeoSearches { get; set; }
-        public virtual DbSet<Post> Posts { get; set; }
+        public virtual DbSet<GeoSearch> GeoSearch { get; set; }
+        public virtual DbSet<Post> Post { get; set; }
     }
 }

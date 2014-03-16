@@ -16,7 +16,6 @@ namespace NhaList.Controllers.API
         {
             if (db == null) throw new ArgumentNullException("db");
             Db = db;
-            Db.LogToTrace();
         }
 
         public void Dispose()

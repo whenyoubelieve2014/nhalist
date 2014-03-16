@@ -221,30 +221,30 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\EntityDataModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>EntityDataModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\EntityDataModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>EntityDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\EntityDataModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>EntityDataModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\EntityDataModel.Views.cs" />
     <Compile Include="Models\GeoSearch.cs">
-      <DependentUpon>EntityDataModel.tt</DependentUpon>
+      <DependentUpon>NhaListModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\INhaListEntities.cs" />
-    <Compile Include="Models\Post.cs">
-      <DependentUpon>EntityDataModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\IPost.cs" />
+    <Compile Include="Models\NhaListModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NhaListModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\NhaListModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NhaListModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\NhaListModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NhaListModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\NhaListModel.Views.cs" />
+    <Compile Include="Models\Post.cs">
+      <DependentUpon>NhaListModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ShortPost.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\SharedAssemblyInfo.cs" />
@@ -597,22 +597,22 @@
     <Content Include="Scripts\angular-resource.min.js.map" />
     <Content Include="Scripts\angular-cookies.min.js.map" />
     <Content Include="Scripts\angular-animate.min.js.map" />
-    <EntityDeploy Include="Models\EntityDataModel.edmx">
+    <EntityDeploy Include="Models\NhaListModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>EntityDataModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>NhaListModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\EntityDataModel.Context.tt">
+    <Content Include="Models\NhaListModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>EntityDataModel.edmx</DependentUpon>
-      <LastGenOutput>EntityDataModel.Context.cs</LastGenOutput>
+      <DependentUpon>NhaListModel.edmx</DependentUpon>
+      <LastGenOutput>NhaListModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\EntityDataModel.edmx.diagram">
-      <DependentUpon>EntityDataModel.edmx</DependentUpon>
+    <Content Include="Models\NhaListModel.edmx.diagram">
+      <DependentUpon>NhaListModel.edmx</DependentUpon>
     </Content>
-    <Content Include="Models\EntityDataModel.tt">
+    <Content Include="Models\NhaListModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>EntityDataModel.edmx</DependentUpon>
-      <LastGenOutput>EntityDataModel.cs</LastGenOutput>
+      <DependentUpon>NhaListModel.edmx</DependentUpon>
+      <LastGenOutput>NhaListModel.cs</LastGenOutput>
     </Content>
     <None Include="Scripts\jquery-1.9.0.intellisense.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />

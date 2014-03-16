@@ -22,7 +22,7 @@ namespace NhaList.Controllers.API
             double minLong = boundary.minLong;
             double maxLat = boundary.maxLat;
             double maxLong = boundary.maxLong;
-            var posts = _provider.Db.Posts
+            var posts = _provider.Db.Post
                 .Where(p => minLat < p.Latitude
                             && p.Latitude < maxLat
                             && minLong < p.Longtitude

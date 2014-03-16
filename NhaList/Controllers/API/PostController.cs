@@ -20,7 +20,7 @@ namespace NhaList.Controllers.API
             if (post == null) throw new ArgumentNullException("post");
 
             post.CreatedOn = DateTime.Now;
-            _provider.Db.Posts.Add(post);
+            _provider.Db.Post.Add(post);
             _provider.Db.SaveChanges();
         }
 

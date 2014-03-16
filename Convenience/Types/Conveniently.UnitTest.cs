@@ -2,9 +2,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 
 namespace NhaList.Convenience.Types
 {
@@ -40,11 +42,26 @@ namespace NhaList.Convenience.Types
                             }
                         }
                     }
+                    catch (DbEntityValidationException dbEx)
+                    {
+                        var b = new StringBuilder();
+                        foreach (DbEntityValidationResult validationErrors in dbEx.EntityValidationErrors)
+                        {
+                            foreach (DbValidationError validationError in validationErrors.ValidationErrors)
+                            {
+                                b.AppendLine(string.Format("Property: {0} Error: {1}", validationError.PropertyName,
+                                    validationError.ErrorMessage));
+                            }
+                        }
+                        assertFail(b.ToString());
+                    }
                     catch (Exception ex)
                     {
                         string error = ex.Message;
                         if (ex.InnerException != null)
                             error += ex.InnerException.Message;
+
+
                         assertFail(error);
                     }
                 }

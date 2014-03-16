@@ -25,7 +25,7 @@ namespace UnitTestProject
 
             protected override void OnModelCreating(DbModelBuilder modelBuilder)
             {
-                base.CallOnModelCreating(modelBuilder);
+                CallOnModelCreating(modelBuilder);
             }
         }
     }

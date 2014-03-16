@@ -4,9 +4,9 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="83f0cea80bed46bb9e398d0372f070a0" Name="Diagram1">
-        <EntityTypeShape EntityType="NhaListModel.GeoSearch" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="NhaListModel.Post" Width="1.5" PointX="2.75" PointY="0.75" />
+      <Diagram DiagramId="5d9127e6f61a4a8e86474fd79b9f50ea" Name="Diagram1">
+        <EntityTypeShape EntityType="NhaListModel.GeoSearch" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NhaListModel.Post" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

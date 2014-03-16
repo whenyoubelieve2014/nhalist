@@ -27,7 +27,6 @@ namespace NhaList
         {
             public MigrationConfig(string connectionName)
             {
-                AutomaticMigrationsEnabled = true;
                 TargetDatabase = new DbConnectionInfo(connectionName);
             }
         }

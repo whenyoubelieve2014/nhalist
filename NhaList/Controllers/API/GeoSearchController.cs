@@ -29,7 +29,7 @@ namespace NhaList.Controllers.API
         /// <returns>lat/long</returns>
         public GeoSearch Get(string data)
         {
-            GeoSearch result = _provider.Db.GeoSearches.FirstOrDefault(
+            GeoSearch result = _provider.Db.GeoSearch.FirstOrDefault(
                 g => string.Compare(g.ApproximateAddress, data, StringComparison.OrdinalIgnoreCase) == 0);
             return result;
         }
@@ -41,7 +41,7 @@ namespace NhaList.Controllers.API
                 //already exists
                 return;
             result.CreatedOn = DateTime.Now;
-            _provider.Db.GeoSearches.Add(result);
+            _provider.Db.GeoSearch.Add(result);
             _provider.Db.SaveChanges();
         }
 

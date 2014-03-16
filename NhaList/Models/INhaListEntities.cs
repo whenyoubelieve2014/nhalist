@@ -9,8 +9,8 @@ namespace NhaList.Models
 {
     public interface INhaListDbContext : IDisposable
     {
-        DbSet<GeoSearch> GeoSearches { get; set; }
-        DbSet<Post> Posts { get; set; }
+        DbSet<GeoSearch> GeoSearch { get; set; }
+        DbSet<Post> Post { get; set; }
         int SaveChanges();
         void LogToTrace();
     }
@@ -19,6 +19,7 @@ namespace NhaList.Models
     {
         protected NhaListEntities(string sqlConnStringName):base(sqlConnStringName)
         {
+            LogToTrace();
         }
         protected void CallOnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -50,7 +51,7 @@ namespace NhaList.Models
 
         public void LogToTrace()
         {
-            Trace.WriteLine("LogToTrace Starting new instance of NhaListEntities");
+            Trace.WriteLine(string.Format("LogToTrace Starting new instance of {0}", GetType()));
             Database.Log = msg => Trace.Write(msg);
         }
     }
