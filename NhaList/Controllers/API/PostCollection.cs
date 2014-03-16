@@ -22,6 +22,11 @@ namespace NhaList.Controllers.API
             Posts = ShortPostAdapter.ToShortPost;
         }
 
+        public PostCollection()
+        {
+            Posts = new List<IPost>();
+        }
+
         public List<IPost> Posts { get; private set; }
 
         public int Count

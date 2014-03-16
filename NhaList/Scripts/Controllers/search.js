@@ -9,22 +9,17 @@
             if ($routeParams.nearBy && $routeParams.nearBy !== $scope.nearBy)
                 $scope.nearBy = $routeParams.nearBy;
             if ($scope.nearBy) {
-                $scope.searching = true;
                 geocoderService.getLatLong($scope.nearBy, function(latLongs, status) {
-                    $scope.noGeoResults = !geocoderService.validate(latLongs, status);
-                    if (!$scope.noGeoResults) {
-                        geocoderService.getBoundary(latLongs, function (boundary) {
-                            ajaxService.postSearch(boundary, function(collection) {
-                                if (collection && collection.Count) {
-                                    $scope.posts = collection.Posts;
-                                    $scope.count = collection.Count;
-                                    $scope.searching = false;
-                                }
-                            });
+                    $scope.noGeoResults = !geocoderService.validate(latLongs, status, 'setting $scope.noGeoResults');
+                    if ($scope.noGeoResults) return;
+                    geocoderService.getBoundary(latLongs, function (boundary) {
+                        ajaxService.postSearch(boundary, function (collection) {
+                            if (collection && collection.Count) {
+                                $scope.posts = collection.Posts;
+                                $scope.count = collection.Count;
+                            }
                         });
-                    } else {
-                        $scope.searching = false;
-                    }
+                    });
                 });
             }
         }

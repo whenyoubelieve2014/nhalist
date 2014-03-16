@@ -132,15 +132,19 @@ angular
             };
             var formatResults = function(results) {
                 $.each(results, function(index, result) {
-                    if (index!==0) {
+                    if (index !== 0) {
                         return;
                     }
-                    var geo = result.geometry;
-                    var bounds = geo.bounds;
-                    var ne = bounds.northeast || bounds.getNorthEast();
-                    var sw = bounds.southwest || bounds.getSouthWest();
-                    geo.bounds.northeast = { lat: ne.lat(), lng: ne.lng() };
-                    geo.bounds.southwest = { lat: sw.lat(), lng: sw.lng() };
+                    try {
+                        var geo = result.geometry;
+                        var bounds = geo.bounds;
+                        var ne = bounds.northeast || bounds.getNorthEast();
+                        var sw = bounds.southwest || bounds.getSouthWest();
+                        geo.bounds.northeast = { lat: ne.lat(), lng: ne.lng() };
+                        geo.bounds.southwest = { lat: sw.lat(), lng: sw.lng() };
+                    } catch (e) {
+                        if (console) console.log('Cannot understand geo.bounds.northeast and/or geo.bounds.southwest. ' + e);
+                    }
                 });
                 return results;
             };
@@ -171,7 +175,7 @@ angular
                 { name: 'dbGeoService', obj: dbGeoService },
                 { name: googleServiceName, obj: new window.google.maps.Geocoder() }
             ];
-            var validate = function(results, status) {
+            var validate = function (results, status, context) {
                 var ok = results && results.length && status === window.google.maps.GeocoderStatus.OK;
                 return ok;
             };

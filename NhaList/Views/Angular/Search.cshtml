@@ -5,25 +5,21 @@
     <div class="col-md-12 col-sm-12">
         <div class="well well-sm">
             <form class="form-inline " role="form" ng-submit="handleSubmit()">
-                <div class="form-group" ng-class="{'has-error': !searching && (noGeoResults || !count)}">
+                <div class="form-group" ng-class="{'has-error': noGeoResults }">
                     <input type="text" autocomplete="off"  class="form-control" placeholder="Thành Phố / Zip Code" ng-model="nearBy" />
-                    <button class="btn" ng-disabled="searching" 
-                            ng-class="{'btn-success':!noResults, 'btn-danger':!searching && (noGeoResults || !count)}"
+                    <button class="btn" ng-disabled="0" 
+                            ng-class="{'btn-success':!noGeoResults, 'btn-danger': noGeoResults}"
                             type="submit">
-                        <span ng-hide="searching">
+                        <span ng-hide="0">
                             <i class="fa fa-search"></i>
                             Tìm
                         </span>
-                        <span ng-show="searching">
+                        <span ng-show="0">
                             <i class="fa fa-spinner fa-spin"></i>
                             Đang Tìm
                         </span>
                     </button>
-                    <span ng-show="nearBy && !searching">
-                        <span class="text-danger" ng-show="noGeoResults" >Không tìm được vùng này. Xin kiểm tra lại tên thành phố hoặc mã vùng.</span>
-                        <span class="text-info" ng-hide="noGeoResults || !count" >Tìm được {{count}} nhà trong vùng.</span>
-                        <span class="text-danger" ng-hide="noGeoResults || count" >Không tìm được nhà nào trong vùng này.</span>
-                    </span>
+                    <span class="text-info" ng-hide="noGeoResults || !count" >Tìm được {{count}} nhà trong vùng.</span>
                 </div>
             </form>
         </div>

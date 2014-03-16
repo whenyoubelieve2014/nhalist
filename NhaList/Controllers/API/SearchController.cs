@@ -18,11 +18,15 @@ namespace NhaList.Controllers.API
         // POST api/post
         public PostCollection Post([FromBody] dynamic boundary)
         {
+            if (boundary == null || boundary.minLat==null)
+            {
+                return new PostCollection();
+            }
             double minLat = boundary.minLat;
             double minLong = boundary.minLong;
             double maxLat = boundary.maxLat;
             double maxLong = boundary.maxLong;
-            var posts = _provider.Db.Post
+            IQueryable<Post> posts = _provider.Db.Post
                 .Where(p => minLat < p.Latitude
                             && p.Latitude < maxLat
                             && minLong < p.Longtitude

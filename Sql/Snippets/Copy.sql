@@ -1,0 +1,25 @@
+﻿--INSERT INTO Post
+--            (Phone,
+--             Email,
+--             [Text],
+--             ApproximateAddress,
+--             FormattedAddress,
+--             Latitude,
+--             Longtitude, CreatedOn)
+--SELECT Phone,
+--       Email,
+--       [Text],
+--       ApproximateAddress,
+--       FormattedAddress,
+--       Latitude,
+--       Longtitude,getdate()
+--FROM   Post_original 
+
+--INSERT INTO GeoSearch
+--            (ApproximateAddress,
+--             GoogleResponse,
+--             createdon)
+--SELECT ApproximateAddress,
+--       GoogleResponse,
+--       getdate()
+--FROM   GeoSearch_original 
