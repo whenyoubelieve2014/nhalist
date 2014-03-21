@@ -175,7 +175,7 @@ angular
                 { name: 'dbGeoService', obj: dbGeoService },
                 { name: googleServiceName, obj: new window.google.maps.Geocoder() }
             ];
-            var validate = function (results, status, context) {
+            var validate = function(results, status, context) {
                 var ok = results && results.length && status === window.google.maps.GeocoderStatus.OK;
                 return ok;
             };
@@ -230,62 +230,62 @@ angular
                 };
                 tryService(0);
             };
-        var getBoundary = function(results, callback) {
-            results = results || [];
-            if (!results.length) {
-                return;
-            }
-            var result = results[0] || {};
-            var geometry = result.geometry || {};
-            var bounds = geometry.bounds|| {};
-            var ne = bounds.northeast || {};
-            var sw = bounds.southwest || {};
-            var boundary = {
-                minLat: Math.min(ne.lat, sw.lat),
-                minLong: Math.min(ne.lng, sw.lng),
-                maxLat: Math.max(ne.lat, sw.lat),
-                maxLong: Math.max(ne.lng, sw.lng)
-            };
-            if (callback) {
-                callback(boundary);
-            }
-            //"results": [
-            //                {
-            //                    "formatted_address": "Washington, DC, USA",
-            //                    "geometry": {
-            //                        "bounds": {
-            //                            "northeast": {
-            //                                "lat": 38.995548,
-            //                                "lng": -76.90939299999999
-            //                            },
-            //                            "southwest": {
-            //                                "lat": 38.7916449,
-            //                                "lng": -77.119759
-            //                            }
-            //                        },
-        };
-        var getFormattedAddress = function(nearBy, onSuccess, onError) {
-            getLatLong(nearBy, function(results, status) {
-                var noResults = !validate(results, status);
-                if (noResults) {
-                    if (onError) onError('No Results');
+            var getBoundary = function(results, callback) {
+                results = results || [];
+                if (!results.length) {
                     return;
                 }
-                if (onSuccess) {
-                    var first = results[0] || {};
-                    var formatted = first.formatted_address || {};
-                    //"location": {
-                    //    "lat": 38.90723089999999,
-                    //    "lng": -77.0364641
-                    //},
-                    var geo = first.geometry || {};
-                    var location = geo.location || {};
-                    var lat = location.lat || location.d;
-                    var lng = location.lng || location.e;
-                    onSuccess(formatted, lat, lng);
+                var result = results[0] || {};
+                var geometry = result.geometry || {};
+                var bounds = geometry.bounds || {};
+                var ne = bounds.northeast || {};
+                var sw = bounds.southwest || {};
+                var boundary = {
+                    minLat: Math.min(ne.lat, sw.lat),
+                    minLong: Math.min(ne.lng, sw.lng),
+                    maxLat: Math.max(ne.lat, sw.lat),
+                    maxLong: Math.max(ne.lng, sw.lng)
+                };
+                if (callback) {
+                    callback(boundary);
                 }
-            });
-        };
+                //"results": [
+                //                {
+                //                    "formatted_address": "Washington, DC, USA",
+                //                    "geometry": {
+                //                        "bounds": {
+                //                            "northeast": {
+                //                                "lat": 38.995548,
+                //                                "lng": -76.90939299999999
+                //                            },
+                //                            "southwest": {
+                //                                "lat": 38.7916449,
+                //                                "lng": -77.119759
+                //                            }
+                //                        },
+            };
+            var getFormattedAddress = function(nearBy, onSuccess, onError) {
+                getLatLong(nearBy, function(results, status) {
+                    var noResults = !validate(results, status);
+                    if (noResults) {
+                        if (onError) onError('No Results');
+                        return;
+                    }
+                    if (onSuccess) {
+                        var first = results[0] || {};
+                        var formatted = first.formatted_address || {};
+                        //"location": {
+                        //    "lat": 38.90723089999999,
+                        //    "lng": -77.0364641
+                        //},
+                        var geo = first.geometry || {};
+                        var location = geo.location || {};
+                        var lat = location.lat || location.d;
+                        var lng = location.lng || location.e;
+                        onSuccess(formatted, lat, lng);
+                    }
+                });
+            };
             return {
                 getLatLong: getLatLong,
                 getBoundary: getBoundary,
