@@ -41,7 +41,7 @@
                     Phone: $scope.phone,
                     Email: $scope.email,
                     Text: $scope.text,
-                    ApproximateAddress: $scope.original,
+                    ApproximateAddress: $scope.original || $scope.nearBy,
                     FormattedAddress: $scope.original != $scope.nearBy ? $scope.nearBy : null,
                     Latitude: $scope.lat,
                     Longtitude: $scope.lng
