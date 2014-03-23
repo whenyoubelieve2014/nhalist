@@ -22,7 +22,6 @@ namespace NhaList.Models
         public string FormattedAddress { get; set; }
         public double Latitude { get; set; }
         public double Longtitude { get; set; }
-        public System.Data.Entity.Spatial.DbGeography Point { get; set; }
         public System.DateTime CreatedOn { get; set; }
     }
 }

@@ -11,7 +11,7 @@ using System.Data.Entity.Infrastructure.MappingViews;
 
 [assembly: DbMappingViewCacheTypeAttribute(
     typeof(NhaList.Models.NhaListEntities),
-    typeof(Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets2e6f42cabc99549ca8a4be9d7cd27f23d10726ecab2459777c2f3c58683ce831))]
+    typeof(Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySetsaba0dfe9966b9fcb9a0e0781fe8cfc699a28fcdcd8b253f48e2f34004ddad956))]
 
 namespace Edm_EntityMappingGeneratedViews
 {
@@ -23,14 +23,14 @@ namespace Edm_EntityMappingGeneratedViews
     /// Implements a mapping view cache.
     /// </summary>
     [GeneratedCode("Entity Framework Power Tools", "0.9.0.0")]
-    internal sealed class ViewsForBaseEntitySets2e6f42cabc99549ca8a4be9d7cd27f23d10726ecab2459777c2f3c58683ce831 : DbMappingViewCache
+    internal sealed class ViewsForBaseEntitySetsaba0dfe9966b9fcb9a0e0781fe8cfc699a28fcdcd8b253f48e2f34004ddad956 : DbMappingViewCache
     {
         /// <summary>
         /// Gets a hash value computed over the mapping closure.
         /// </summary>
         public override string MappingHashValue
         {
-            get { return "2e6f42cabc99549ca8a4be9d7cd27f23d10726ecab2459777c2f3c58683ce831"; }
+            get { return "aba0dfe9966b9fcb9a0e0781fe8cfc699a28fcdcd8b253f48e2f34004ddad956"; }
         }
 
         /// <summary>
@@ -118,7 +118,7 @@ namespace Edm_EntityMappingGeneratedViews
         {
             return new DbMappingView(@"
     SELECT VALUE -- Constructing Post
-        [NhaListModel.Store.Post](T1.Post_Id, T1.Post_Phone, T1.Post_Email, T1.Post_Text, T1.Post_ApproximateAddress, T1.Post_FormattedAddress, T1.Post_Latitude, T1.Post_Longtitude, T1.Post_Point, T1.Post_CreatedOn)
+        [NhaListModel.Store.Post](T1.Post_Id, T1.Post_Phone, T1.Post_Email, T1.Post_Text, T1.Post_ApproximateAddress, T1.Post_FormattedAddress, T1.Post_Latitude, T1.Post_Longtitude, T1.Post_CreatedOn)
     FROM (
         SELECT 
             T.Id AS Post_Id, 
@@ -129,7 +129,6 @@ namespace Edm_EntityMappingGeneratedViews
             T.FormattedAddress AS Post_FormattedAddress, 
             T.Latitude AS Post_Latitude, 
             T.Longtitude AS Post_Longtitude, 
-            T.Point AS Post_Point, 
             T.CreatedOn AS Post_CreatedOn, 
             True AS _from0
         FROM NhaListEntities.Post AS T
@@ -144,7 +143,7 @@ namespace Edm_EntityMappingGeneratedViews
         {
             return new DbMappingView(@"
     SELECT VALUE -- Constructing Post
-        [NhaListModel.Post](T1.Post_Id, T1.Post_Phone, T1.Post_Email, T1.Post_Text, T1.Post_ApproximateAddress, T1.Post_FormattedAddress, T1.Post_Latitude, T1.Post_Longtitude, T1.Post_Point, T1.Post_CreatedOn)
+        [NhaListModel.Post](T1.Post_Id, T1.Post_Phone, T1.Post_Email, T1.Post_Text, T1.Post_ApproximateAddress, T1.Post_FormattedAddress, T1.Post_Latitude, T1.Post_Longtitude, T1.Post_CreatedOn)
     FROM (
         SELECT 
             T.Id AS Post_Id, 
@@ -155,7 +154,6 @@ namespace Edm_EntityMappingGeneratedViews
             T.FormattedAddress AS Post_FormattedAddress, 
             T.Latitude AS Post_Latitude, 
             T.Longtitude AS Post_Longtitude, 
-            T.Point AS Post_Point, 
             T.CreatedOn AS Post_CreatedOn, 
             True AS _from0
         FROM NhaListModelStoreContainer.Post AS T
