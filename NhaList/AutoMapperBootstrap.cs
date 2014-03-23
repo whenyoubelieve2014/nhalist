@@ -31,7 +31,7 @@ namespace NhaList
             public MigrationConfig(string connectionName)
             {
                 DbConfiguration.LoadConfiguration(typeof(NhaListEntities));
-                AutomaticMigrationDataLossAllowed = false;
+                AutomaticMigrationDataLossAllowed = true;
                 AutomaticMigrationsEnabled = true;
                 TargetDatabase = new DbConnectionInfo(connectionName);
             }
