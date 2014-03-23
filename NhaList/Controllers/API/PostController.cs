@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Linq;
 using System.Web.Http;
+using NhaList.Convenience.ExtensionMethods;
+using NhaList.Convenience.Types;
 using NhaList.Models;
 
 namespace NhaList.Controllers.API
@@ -16,13 +18,19 @@ namespace NhaList.Controllers.API
         }
 
         // POST api/post
-        public void Post([FromBody] Post post)
+        public IHttpActionResult Post([FromBody] Post post)
         {
-            if (post == null) throw new ArgumentNullException("post");
+            if (post == null) return BadRequest("post is null");
 
-            post.CreatedOn = DateTime.Now;
-            _provider.Db.Post.Add(post);
-            _provider.Db.SaveChanges();
+            return Conveniently.Try<IHttpActionResult>(() =>
+            {
+                post.CreatedOn = DateTime.Now;
+                _provider.Db.Post.Add(post);
+                _provider.Db.SaveChanges();
+                return Ok();
+            }, error =>
+                InternalServerError(new DataOperationException(
+                    string.Format("Cannot save post<{0}>", post.ToJson()), error)));
         }
 
         // GET api/post

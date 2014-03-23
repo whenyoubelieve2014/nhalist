@@ -12,9 +12,10 @@ namespace NhaList
 {
     public class UnityBootstrap
     {
+        public const string NAMESPACE_NHALIST = "NhaList";
         public static UnityBootstrap Bootstrapper = new UnityBootstrap();
 
-        public IUnityContainer Initialise(HttpConfiguration webApiConfig = null)
+        public IUnityContainer Initialise(HttpConfiguration webApiConfig=null)
         {
             IUnityContainer container = buildUnityContainer();
             ObjectFactory.DefaultContainer = container;
@@ -31,7 +32,6 @@ namespace NhaList
             RegisterTypes(container);
             return container;
         }
-        public const string NAMESPACE_NHALIST = "NhaList";
 
         public void RegisterTypes(IUnityContainer container)
         {
@@ -54,8 +54,7 @@ namespace NhaList
                     return !exclusions.Contains(name)
                            &&
                            (c.Namespace != null &&
-                            c.Namespace.StartsWith(NAMESPACE_NHALIST, StringComparison.OrdinalIgnoreCase))
-                            ;
+                            c.Namespace.StartsWith(NAMESPACE_NHALIST, StringComparison.OrdinalIgnoreCase));
                 })
                 .OrderBy(c => c.FullName);
 
@@ -73,7 +72,7 @@ namespace NhaList
 
             var singleton = new ContainerControlledLifetimeManager();
             container.RegisterType<IVersionProvider, VersionProvider>(singleton);
-            container.RegisterType<INhaListDbContext, NhaListEntities>(new PerThreadLifetimeManager());
+            container.RegisterType<INhaListDbContext, TracedNhaListEntities>(new PerThreadLifetimeManager());
         }
     }
 }

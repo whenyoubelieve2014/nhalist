@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Data.Entity;
 using System.Diagnostics;
-using System.Linq;
-using System.Reflection;
 
 namespace NhaList.Convenience.Types
 {
@@ -12,22 +7,28 @@ namespace NhaList.Convenience.Types
     {
         public static T Try<T>(Func<T> func)
         {
-            if (func == null) throw new ArgumentNullException("func");
-            T result;
-            string fullname = typeof (T).FullName;
-            try
-            {
-                result = func();
-            }
-            catch (Exception inner)
-            {
-                Trace.TraceError(string.Format("tryReturn<{0}> failed. Exception: {1}", fullname, inner));
-                throw;
-            }
-            Trace.WriteLine(string.Format("tryReturn {0}", fullname));
-            return result;
+            return Try(func, error => Debug.Fail(error.ToString()), error => default(T));
         }
 
-        
+        public static T Try<T>(Func<T> func, Func<Exception, T> returnOnError)
+        {
+            return Try(func, error => Debug.Fail(error.ToString()), returnOnError);
+        }
+
+        public static T Try<T>(Func<T> func, Action<Exception> onError, Func<Exception, T> returnOnError)
+        {
+            if (func == null) throw new ArgumentNullException("func");
+            try
+            {
+                var result = func();
+                return result;
+            }
+            catch (Exception error)
+            {
+                Trace.TraceError(error.ToString());
+                onError(error);
+                return returnOnError(error);
+            }
+        }
     }
 }

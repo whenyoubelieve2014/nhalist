@@ -12,19 +12,19 @@ namespace NhaList.Models
         DbSet<GeoSearch> GeoSearch { get; set; }
         DbSet<Post> Post { get; set; }
         int SaveChanges();
+    }
+
+    public interface ITracedDbContext
+    {
         void LogToTrace();
     }
 
     public partial class NhaListEntities : INhaListDbContext
     {
-        protected NhaListEntities(string sqlConnStringName):base(sqlConnStringName)
+        protected NhaListEntities(string sqlConnStringName) : base(sqlConnStringName)
         {
-            LogToTrace();
         }
-        protected void CallOnModelCreating(DbModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
-        }
+
         public override int SaveChanges()
         {
             try
@@ -47,6 +47,20 @@ namespace NhaList.Models
                 Trace.WriteLine(msg);
                 throw new EntityCommandExecutionException(msg, validationException);
             }
+        }
+
+
+        protected void CallOnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+        }
+    }
+
+    public class TracedNhaListEntities : NhaListEntities, ITracedDbContext
+    {
+        public TracedNhaListEntities()
+        {
+            LogToTrace();
         }
 
         public void LogToTrace()

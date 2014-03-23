@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Runtime.Serialization;
+using System.Web.Script.Serialization;
+using NhaList.Convenience.Types;
 
 namespace NhaList.Convenience.ExtensionMethods
 {
@@ -36,22 +39,18 @@ namespace NhaList.Convenience.ExtensionMethods
         }
     }
 
-    public static class SmartTranslation
+    public static class ObjectExtension
     {
-        public static string ToSmartString(this DateTime date)
-        {
-            return Smart.Date.Format(date);
-        }
-    }
+        private static readonly JavaScriptSerializer Serializer;
 
-    public class Smart
-    {
-        public class Date
+        static ObjectExtension()
         {
-            public static string Format(DateTime date)
-            {
-                return date.ToLongDateString();
-            }
+            Serializer = new JavaScriptSerializer();
+        }
+
+        public static string ToJson(this object obj)
+        {
+            return Conveniently.Try(() => Serializer.Serialize(obj), error => null);
         }
     }
 }

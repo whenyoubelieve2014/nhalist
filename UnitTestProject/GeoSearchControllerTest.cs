@@ -15,15 +15,15 @@ namespace UnitTestProject
             //searchAndFound("vienna");
         }
 
-        private void searchAndFound(string address)
-        {
-            var db = new NhaListEntities();
-            using (var target = new GeoSearchController(new NhaListEntityProvider(db)))
-            {
-                if (!db.GeoSearch.Any()) return;
-                GeoSearch actual = target.Get(address);
-                Assert.IsNotNull(actual);
-            }
-        }
+        //private void searchAndFound(string address)
+        //{
+        //    var db = new NhaListEntities();
+        //    using (var target = new GeoSearchController(new NhaListEntityProvider(db)))
+        //    {
+        //        if (!db.GeoSearch.Any()) return;
+        //        GeoSearch actual = target.Get(address);
+        //        Assert.IsNotNull(actual);
+        //    }
+        //}
     }
 }
