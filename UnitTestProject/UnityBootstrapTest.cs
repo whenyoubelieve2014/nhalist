@@ -5,7 +5,6 @@ using NhaList.Controllers.API;
 
 namespace UnitTestProject
 {
-    [TestClass]
     public class UnityBootstrapTest
     {
         [TestMethod]

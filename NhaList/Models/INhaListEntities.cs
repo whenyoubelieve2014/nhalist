@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data.Entity;
 using System.Data.Entity.Core;
+using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Validation;
 using System.Diagnostics;
 using System.Text;
@@ -12,6 +13,7 @@ namespace NhaList.Models
         DbSet<GeoSearch> GeoSearch { get; set; }
         DbSet<Post> Post { get; set; }
         int SaveChanges();
+        DbEntityEntry<TEntity> Entry<TEntity>(TEntity entity) where TEntity : class;
     }
 
     public interface ITracedDbContext

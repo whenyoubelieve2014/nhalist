@@ -222,6 +222,7 @@
     <Compile Include="Controllers\API\DataOperationException.cs" />
     <Compile Include="Controllers\API\GeoSearchController.cs" />
     <Compile Include="Controllers\API\INhaListEntityProvider.cs" />
+    <Compile Include="Controllers\API\PostBackController.cs" />
     <Compile Include="Controllers\API\PostCollection.cs" />
     <Compile Include="Controllers\API\SearchController.cs" />
     <Compile Include="Controllers\API\PostController.cs" />

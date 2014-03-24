@@ -10,15 +10,31 @@
                     <legend>
                         Tìm Nhà Cho Thuê
                     </legend>
-                    <div class="form-group" >
-                        <label class="hidden-inline-xs hidden-inline-sm">Tên Thành Phố hoặc Mã Vùng (Zip Code):</label>
-                        <h5 class="hidden-lg hidden-md">Tên Thành Phố hoặc Mã Vùng (Zip Code):</h5>
-                        <input type="text" autocomplete="off"  class="form-control" placeholder="Ví dụ: Fallschurch, hoặc 22046" ng-model="nearBy" />
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="form-group" >
+                                <label class="hidden-inline-xs hidden-inline-sm">Tên Thành Phố hoặc Mã Vùng (Zip Code):</label>
+                                <input type="text" autocomplete="off"  class="form-control" placeholder="Ví dụ: Fallschurch, hoặc 22046" ng-model="nearBy" />
+                            </div>
+                            <div>
+                                <button class="btn btn-success" type="submit">
+                                    <i class="fa fa-search-plus"></i>
+                                    Tìm Ngay
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <a class="btn btn-default btn-block" href="view/search/CA">
+                                California
+                            </a>
+                            <a class="btn btn-default btn-block" href="view/search/VA">
+                                Virginia
+                            </a>
+                            <a class="btn btn-default btn-block" href="view/search/TX">
+                                Texas
+                            </a>
+                        </div>
                     </div>
-                    <button class="btn btn-success" type="submit">
-                        <i class="fa fa-search-plus"></i>
-                        Tìm Ngay
-                    </button>
                 </fieldset>
             </form>
         </section>
@@ -63,13 +79,13 @@
                             <i class="fa fa-arrow-up"></i>
                             Đăng Lên Mạng
                         </button>
-                        <span ng-show="posting" class="alert alert-info">
-                            <i class="fa fa-spinner fa-spin fa-2x" ></i>
-                            Xin cảm ơn đã đăng tin.
+                        <span ng-show="posting" class="alert alert-info center-block">
+                            <i class="fa fa-spinner fa-spin" ></i>
+                            Đang Đăng Tin.
                         </span>
-                        <span ng-show="posted" class="alert alert-success">
-                            <i class="fa fa-thumbs-o-up fa-2x"></i>
-                            Xin cảm ơn đã đăng tin.
+                        <span ng-show="posted" class="alert alert-warning center-block">
+                            <i class="fa fa-thumbs-o-up"></i>
+                            Tin Đăng Xong.
                         </span>
                     </div>
                 </fieldset>
