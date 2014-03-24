@@ -9,6 +9,7 @@ namespace NhaList.Controllers.API
 {
     public class PostController : ApiController
     {
+        private const string MAGIC_WORD = "2C324A02-A980-4BA6-BB10-A3B45886067F";
         private readonly INhaListEntityProvider _provider;
 
         public PostController(INhaListEntityProvider provider)
@@ -37,22 +38,19 @@ namespace NhaList.Controllers.API
         [Queryable]
         public IQueryable<Post> Get(string password)
         {
-            if (password != "2C324A02-A980-4BA6-BB10-A3B45886067F")
-            {
-                return null;
-            }
-            return _provider.Db.Post.AsQueryable();
+            return Conveniently.Try(() => password != MAGIC_WORD ? null : _provider.Db.Post.AsQueryable());
         }
 
-        //// DELETE api/post
-        //public int Delete(string password)
-        //{
-        //    if (password != "2C324A02-A980-4BA6-BB10-A3B45886067F")
-        //    {
-        //        return int.MinValue;
-        //    }
-        //    _provider.Db.Post.RemoveRange(_provider.Db.Post);
-        //    return _provider.Db.SaveChanges();
-        //}
+        // DELETE api/post
+        public IHttpActionResult Delete(string password)
+        {
+            return password != MAGIC_WORD
+                ? (IHttpActionResult) NotFound()
+                : Conveniently.Try(() =>
+                {
+                    _provider.Db.Post.RemoveRange(_provider.Db.Post);
+                    return Ok(_provider.Db.SaveChanges());
+                });
+        }
     }
 }
