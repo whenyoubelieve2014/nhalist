@@ -29,7 +29,7 @@
                 $scope.validating = true;
 
                 var checkCompletion = function() {
-                    return $scope.validating && $scope.phone && $scope.email && $scope.nearBy && $scope.text;
+                    return $scope.validating && ($scope.phone || $scope.email) && $scope.nearBy && $scope.text;
                 };
                 var checkValidity = function() {
                     return checkCompletion() && true;
