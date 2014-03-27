@@ -14,7 +14,7 @@
     .controller('postCtrlr', [
         '$scope', '$timeout', 'ajaxService', 'geocoderService', function($scope, $timeout, ajaxService, geocoderService) {
             $scope.updateAddress = function() {
-                //if (console) console.log('postCtrlr.updateAddress');
+                if (console) console.log('postCtrlr.updateAddress');
                 try {
 
                     var nearBy = new String($scope.nearBy);
@@ -33,10 +33,10 @@
 
                     }, function(error) {
                         try {
-                            //if (console) console.log('postCtrlr.updateAddress.noGeoResults');
+                            if (console) console.log('postCtrlr.updateAddress.noGeoResults');
                             $scope.noGeoResults = error;
                         } catch (errorUpdatingScopeNoResult) {
-                            //if (console) console.log('postCtrlr.updateAddress.errorUpdatingScopeNoResult', errorUpdatingScopeNoResult);
+                            if (console) console.log('postCtrlr.updateAddress.errorUpdatingScopeNoResult', errorUpdatingScopeNoResult);
                         }
                     });
                 } catch (errorGettingFormattedAddress) {

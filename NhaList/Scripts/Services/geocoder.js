@@ -86,7 +86,7 @@ angular
                         try {
                             callback(response.results, response.status);
                         } catch (errorInCallback) {
-                            //if (console) console.log('localGeoService.geocode.errorInCallback', errorInCallback);
+                            if (console) console.log('localGeoService.geocode.errorInCallback', errorInCallback);
                         } 
                     });
                     return;
@@ -95,7 +95,7 @@ angular
                     try {
                         callback(null, window.google.maps.GeocoderStatus.ZERO_RESULTS);
                     } catch (errorInCallbackNull) {
-                        //if (console) console.log('localGeoService.geocode.errorInCallbackNull', errorInCallbackNull);
+                        if (console) console.log('localGeoService.geocode.errorInCallbackNull', errorInCallbackNull);
                     }
                 });
             };
@@ -122,7 +122,7 @@ angular
                     try {
                         callback(null, window.google.maps.GeocoderStatus.ZERO_RESULTS);
                     } catch (errorInCallbackZero) {
-                        //if (console) console.log('dbGeoService.errorInCallbackZero', errorInCallbackZero);
+                        if (console) console.log('dbGeoService.errorInCallbackZero', errorInCallbackZero);
                     }
                 };
                 ajaxService.getGeoSearch(data.address, function(success) {
@@ -132,7 +132,7 @@ angular
                         try {
                             callback(results, window.google.maps.GeocoderStatus.OK);
                         } catch (errorInCallback) {
-                            //if (console) console.log('dbGeoService.errorInCallback', errorInCallback);
+                            if (console) console.log('dbGeoService.errorInCallback', errorInCallback);
                         } 
                         return;
                     }
@@ -152,7 +152,7 @@ angular
                         geo.bounds.northeast = { lat: ne.lat(), lng: ne.lng() };
                         geo.bounds.southwest = { lat: sw.lat(), lng: sw.lng() };
                     } catch (errorWhenFormattingResults) {
-                        //if (console) console.log('dbGeoService.formatResults.errorWhenFormattingResults', errorWhenFormattingResults);
+                        if (console) console.log('dbGeoService.formatResults.errorWhenFormattingResults', errorWhenFormattingResults);
                     }
                 });
                 return results;
@@ -196,17 +196,17 @@ angular
                     $.each(services, function(index, service) {
                         if (service.obj.save) {
                             try {
-                                //if (console) console.log('geocoderService.save');
+                                if (console) console.log('geocoderService.save');
                                 service.obj.save(address, results);
                             } catch (errorWhenSave) {
-                                //if (console) console.log('geocoderService.getLatLong.errorWhenSave', errorWhenSave);
+                                if (console) console.log('geocoderService.getLatLong.errorWhenSave', errorWhenSave);
                             }
                         }
                     });
                 };
 
                 var tryService = function(i) {
-                    //if (console) console.log('trying Service<' + i + '>');
+                    if (console) console.log('trying Service<' + i + '>');
 
                     if (i >= services.length) {
                         //all services have been tried
@@ -215,7 +215,7 @@ angular
                             try {
                                 callback(null, window.google.maps.GeocoderStatus.ZERO_RESULTS);
                             } catch (errorCallback) {
-                                //if (console) console.log('tryService.errorCallback', errorCallback);
+                                if (console) console.log('tryService.errorCallback', errorCallback);
 
                             }
                         }
@@ -244,17 +244,17 @@ angular
                         if (callback) {
                             if (serviceName === 'google.maps.Geocoder') {
                                 try {
-                                    //if (console) console.log('save');
+                                    if (console) console.log('save');
                                     save(addressWrapper.address, results);
                                 } catch (errorCallingSave) {
-                                    //if (console) console.log('errorCallingSave', errorCallingSave);
+                                    if (console) console.log('errorCallingSave', errorCallingSave);
                                 } 
                             }
                             try {
-                                //if (console) console.log('tryService<' + i + '>.callback');
+                                if (console) console.log('tryService<' + i + '>.callback');
                                 callback(results, status);
                             } catch (errorInCallback) {
-                                //if (console) console.log('tryService<' + i + '>.errorInCallback', errorInCallback);
+                                if (console) console.log('tryService<' + i + '>.errorInCallback', errorInCallback);
                             } 
                         }
                     });
@@ -301,10 +301,10 @@ angular
                     if (noResults) {
                         if (onError) {
                             try {
-                                //if (console) console.log('getLatLong.onError');
+                                if (console) console.log('getLatLong.onError');
                                 onError('No Results');
                             } catch (errorInCallbackNoResult) {
-                                //if (console) console.log('getLatLong.errorInCallbackNoResult', errorInCallbackNoResult);
+                                if (console) console.log('getLatLong.errorInCallbackNoResult', errorInCallbackNoResult);
                             } 
                         }
                         return;
