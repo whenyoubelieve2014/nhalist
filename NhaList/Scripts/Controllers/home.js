@@ -27,6 +27,7 @@
                                 $scope.nearBy = formatted;
                                 $scope.lat = lat;
                                 $scope.lng = lng;
+                                if (console) console.log($scope.lat, $scope.lng);
                             });
                         }, 50);
 
@@ -55,6 +56,7 @@
                 if (!checkValidity()) return false;
                 $scope.posting = true;
                 $scope.validating = false;
+                if (console) console.log($scope.lat, $scope.lng);
                 ajaxService.postPost({
                     Phone: $scope.phone,
                     Email: $scope.email,
