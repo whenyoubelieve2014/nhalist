@@ -1,10 +1,4 @@
 'use strict';
-/*
-TODO:
-. save results to cache
-. retrieve results from db
-. save results to db
-*/
 angular
     .module('geocoder', ['ajax'])
     .factory('localGeoService', [
@@ -88,13 +82,21 @@ angular
                 });
                 if (found && found.length) {
                     var response = found[0].googleResponse;
-                    $timeout(function() {
-                        callback(response.results, response.status);
+                    $timeout(function () {
+                        try {
+                            callback(response.results, response.status);
+                        } catch (errorInCallback) {
+                            //if (console) console.log('localGeoService.geocode.errorInCallback', errorInCallback);
+                        } 
                     });
                     return;
                 }
                 $timeout(function() {
-                    callback(null, window.google.maps.GeocoderStatus.ZERO_RESULTS);
+                    try {
+                        callback(null, window.google.maps.GeocoderStatus.ZERO_RESULTS);
+                    } catch (errorInCallbackNull) {
+                        //if (console) console.log('localGeoService.geocode.errorInCallbackNull', errorInCallbackNull);
+                    }
                 });
             };
             var save = function(address, results) {
@@ -117,14 +119,21 @@ angular
             var geocode = function(data, callback) {
                 if (!data || !callback) return;
                 var returnZeroResultsToCallback = function() {
-                    callback(null, window.google.maps.GeocoderStatus.ZERO_RESULTS);
+                    try {
+                        callback(null, window.google.maps.GeocoderStatus.ZERO_RESULTS);
+                    } catch (errorInCallbackZero) {
+                        //if (console) console.log('dbGeoService.errorInCallbackZero', errorInCallbackZero);
+                    }
                 };
                 ajaxService.getGeoSearch(data.address, function(success) {
                     if (success && success.GoogleResponse) {
                         //unwrapping
                         var results = $.parseJSON(success.GoogleResponse).results;
-
-                        callback(results, window.google.maps.GeocoderStatus.OK);
+                        try {
+                            callback(results, window.google.maps.GeocoderStatus.OK);
+                        } catch (errorInCallback) {
+                            //if (console) console.log('dbGeoService.errorInCallback', errorInCallback);
+                        } 
                         return;
                     }
                     returnZeroResultsToCallback();
@@ -142,8 +151,8 @@ angular
                         var sw = bounds.southwest || bounds.getSouthWest();
                         geo.bounds.northeast = { lat: ne.lat(), lng: ne.lng() };
                         geo.bounds.southwest = { lat: sw.lat(), lng: sw.lng() };
-                    } catch (e) {
-                        if (console) console.log('Cannot understand geo.bounds.northeast and/or geo.bounds.southwest. ' + e);
+                    } catch (errorWhenFormattingResults) {
+                        //if (console) console.log('dbGeoService.formatResults.errorWhenFormattingResults', errorWhenFormattingResults);
                     }
                 });
                 return results;
@@ -186,17 +195,29 @@ angular
                 var save = function(address, results) {
                     $.each(services, function(index, service) {
                         if (service.obj.save) {
-                            service.obj.save(address, results);
+                            try {
+                                //if (console) console.log('geocoderService.save');
+                                service.obj.save(address, results);
+                            } catch (errorWhenSave) {
+                                //if (console) console.log('geocoderService.getLatLong.errorWhenSave', errorWhenSave);
+                            }
                         }
                     });
                 };
 
                 var tryService = function(i) {
+                    //if (console) console.log('trying Service<' + i + '>');
+
                     if (i >= services.length) {
                         //all services have been tried
                         //no results found
                         if (callback) {
-                            callback(null, window.google.maps.GeocoderStatus.ZERO_RESULTS);
+                            try {
+                                callback(null, window.google.maps.GeocoderStatus.ZERO_RESULTS);
+                            } catch (errorCallback) {
+                                //if (console) console.log('tryService.errorCallback', errorCallback);
+
+                            }
                         }
                         return;
                     }
@@ -222,9 +243,19 @@ angular
                         }
                         if (callback) {
                             if (serviceName === 'google.maps.Geocoder') {
-                                save(addressWrapper.address, results);
+                                try {
+                                    //if (console) console.log('save');
+                                    save(addressWrapper.address, results);
+                                } catch (errorCallingSave) {
+                                    //if (console) console.log('errorCallingSave', errorCallingSave);
+                                } 
                             }
-                            callback(results, status);
+                            try {
+                                //if (console) console.log('tryService<' + i + '>.callback');
+                                callback(results, status);
+                            } catch (errorInCallback) {
+                                //if (console) console.log('tryService<' + i + '>.errorInCallback', errorInCallback);
+                            } 
                         }
                     });
                 };
@@ -268,21 +299,36 @@ angular
                 getLatLong(nearBy, function(results, status) {
                     var noResults = !validate(results, status);
                     if (noResults) {
-                        if (onError) onError('No Results');
+                        if (onError) {
+                            try {
+                                //if (console) console.log('getLatLong.onError');
+                                onError('No Results');
+                            } catch (errorInCallbackNoResult) {
+                                //if (console) console.log('getLatLong.errorInCallbackNoResult', errorInCallbackNoResult);
+                            } 
+                        }
                         return;
                     }
                     if (onSuccess) {
-                        var first = results[0] || {};
-                        var formatted = first.formatted_address || {};
-                        //"location": {
-                        //    "lat": 38.90723089999999,
-                        //    "lng": -77.0364641
-                        //},
-                        var geo = first.geometry || {};
-                        var location = geo.location || {};
-                        var lat = location.lat || location.d;
-                        var lng = location.lng || location.e;
-                        onSuccess(formatted, lat, lng);
+                        try {
+                            var first = results[0] || {};
+                            var formatted = first.formatted_address || {};
+
+                            var geo = first.geometry || {};
+                            var location = geo.location || {};
+                            var lat = location.lat || location.d;
+                            var lng = location.lng || location.e;
+                        } catch (errorWhenParsingResult) {
+                            if (console)
+                                console.log('getFormattedAddress.errorWhenParsingResult', errorWhenParsingResult);
+                        }
+                        try {
+                            console.log('getFormattedAddress.onSuccess');
+                            onSuccess(formatted, lat, lng);
+                        } catch (errorInCallback) {
+                            if (console)
+                                console.log('getFormattedAddress.errorInCallback', errorInCallback);
+                        }
                     }
                 });
             };

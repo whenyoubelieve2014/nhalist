@@ -22,9 +22,9 @@ namespace NhaList
 
             bundles.Add(new ScriptBundle("~/bundles/app")
                 .Include("~/Scripts/Filters/*.js")
-                .Include("~/Scripts/Services/*.js")
+                //.Include("~/Scripts/Services/*.js")
                 //.Include("~/Scripts/Controllers/search.js")
-                .Include("~/Scripts/Controllers/*.js")
+                //.Include("~/Scripts/Controllers/*.js")
                 //.Include("~/Scripts/appRoutes.js")
                 //.Include("~/Scripts/app.js")
                 .Include("~/Scripts/*.js")

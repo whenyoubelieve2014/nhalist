@@ -13,23 +13,41 @@
     ])
     .controller('postCtrlr', [
         '$scope', '$timeout', 'ajaxService', 'geocoderService', function($scope, $timeout, ajaxService, geocoderService) {
-
             $scope.updateAddress = function() {
-                geocoderService.getFormattedAddress($scope.nearBy, function(formatted, lat, lng) {
-                    $scope.original = $scope.nearBy;
-                    $scope.nearBy = formatted;
-                    $scope.lat = lat;
-                    $scope.lng = lng;
-                }, function(error) {
-                    $scope.noGeoResults = error;
-                });
+                //if (console) console.log('postCtrlr.updateAddress');
+                try {
+
+                    var nearBy = new String($scope.nearBy);
+                    geocoderService.getFormattedAddress(nearBy, function(formatted, lat, lng) {
+
+                        $timeout(function() {
+                            $scope.$apply(function() {
+                                //lastFormatted = formatted;
+                                $scope.original = $scope.nearBy;
+                                $scope.nearBy = formatted;
+                                $scope.lat = lat;
+                                $scope.lng = lng;
+                            });
+                        }, 50);
+
+                    }, function(error) {
+                        try {
+                            //if (console) console.log('postCtrlr.updateAddress.noGeoResults');
+                            $scope.noGeoResults = error;
+                        } catch (errorUpdatingScopeNoResult) {
+                            //if (console) console.log('postCtrlr.updateAddress.errorUpdatingScopeNoResult', errorUpdatingScopeNoResult);
+                        }
+                    });
+                } catch (errorGettingFormattedAddress) {
+                    if (console) console.log('$scope.updateAddress.geocoderService.errorGettingFormattedAddress', errorGettingFormattedAddress);
+                }
             };
 
             $scope.handleSubmit = function() {
                 $scope.validating = true;
 
                 var checkCompletion = function() {
-                    return $scope.validating && ($scope.phone || $scope.email) && $scope.nearBy && $scope.text;
+                    return 1; //$scope.validating && ($scope.phone || $scope.email) && $scope.nearBy && $scope.text;
                 };
                 var checkValidity = function() {
                     return checkCompletion() && true;

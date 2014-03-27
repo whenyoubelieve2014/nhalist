@@ -39,10 +39,13 @@
             </form>
         </section>
         <section class="well">
-            <h5>Thông Tin & Quảng Cáo</h5>
-            <div class="alert alert-info alert-dismissable">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <p><strong>Chưa Xong!</strong> Xin Đừng Sử Dụng.</p>
+            <h4>Đăng Tin Trên Nhà List</h4>
+            <hr />
+            <div>
+                <h5><i class="fa fa-dollar fa-2x text-success"></i> Miễn Phí & Nhanh Tức Thì.</h5>
+                <h5><i class="fa fa-laptop fa-2x text-success"></i> Dễ Đăng. Dễ Tìm. Dễ Đọc.</h5>
+                <h5><i class="fa fa-globe fa-2x text-success"></i> Mọi Nơi Trên Thế Giới.</h5>
+                <h5><i class="fa fa-mobile-phone fa-2x text-success"></i> Chạy Trên Điện Thoại.</h5>
             </div>
         </section>
     </section>
@@ -67,21 +70,21 @@
                     <div class="form-group" ng-class="{'has-error text-danger': validating && !nearBy}">
                         <label>Tên Thành Phố hoặc Mã Vùng (Zip Code):</label>
                         <input type="text" autocomplete="off" ng-model="nearBy" ng-blur="updateAddress()" class="form-control" placeholder="Ví dụ: Fallschurch, hoặc 22046" />
-                        <span class="text-success" ng-show="validating && !noGeoResults">{{ formattedAddress }}</span>
-                        <span class="text-danger" ng-show="validating && noGeoResults">Không tìm thấy thành phố này trên bản đồ.</span>
+@*                        <span class="text-success" ng-show="validating && !noGeoResults">{{ formattedAddress }}</span>
+                        <span class="text-danger" ng-show="validating && noGeoResults">Không tìm thấy thành phố này trên bản đồ.</span>*@
                     </div>
                     <div class="form-group" ng-class="{'has-error text-danger': validating && !text}">
                         <label>Lời Giới Thiệu:</label>
                         <textarea rows="6" class="form-control" ng-model="text" placeholder="Ví dụ: Nhà ở gần Eden, có chỗ parking rộng rãi. Điện thoại xin gặp anh Ngân." ng-model="nearBy"></textarea>
                     </div>
                     <div class="form-group" >
-                        <button class="btn btn-yellow" type="submit" @*ng-hide="posting || posted"*@>
+                        <button class="btn btn-yellow" type="submit" ng-hide="posting || posted">
                             <i class="fa fa-arrow-up"></i>
                             Đăng Lên Mạng
                         </button>
                         <span ng-show="posting" class="alert alert-info center-block">
                             <i class="fa fa-spinner fa-spin" ></i>
-                            Đang Đăng Tin.
+                            Tin Đang Đăng
                         </span>
                         <span ng-show="posted && !posting" class="alert alert-info center-block">
                             <i class="fa fa-thumbs-o-up"></i>
